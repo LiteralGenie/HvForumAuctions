@@ -1,0 +1,26 @@
+{
+  "items": {
+    "Wep": {
+      "1": [
+        {
+          "item_type": "wep",
+          "item_code": "1",
+          "max": 500000.0,
+          "is_forum_post": true,
+          "is_proxy": false,
+          "source": {
+            "index": 5,
+            "id": "5932154",
+            "text": "wep1 500k",
+            "user": {
+              "name": "프레이",
+              "id": "3950842"
+            },
+            "time": 1624557004.0494096
+          }
+        }
+      ]
+    }
+  },
+  "warnings": []
+}

@@ -1,0 +1,4 @@
+config/config.yaml
+/client/dist/
+/server/venv/
+/.idea/
