@@ -50,7 +50,7 @@ equip_section: |-
       else:
         tmp= MAX_BIDS[CATEGORY['abbreviation']][str(num)]
         max= int_to_price(tmp['max'])
-        current= int_to_price(tmp['actual_bid'])
+        current= int_to_price(tmp['visible_bid'])
         user= f"{tmp['source']['user']['name']}"
         bid= f"[color=orange][b]{user} {current}[/b][/color]"
 
@@ -99,10 +99,10 @@ item_section: |-
         bid_info= MAX_BIDS[abbrv][str(num)]
 
         user= f"{bid_info['source']['user']['name']}"
-        current= int_to_price(bid_info['actual_bid'])
+        current= int_to_price(bid_info['visible_bid'])
         max= int_to_price(bid_info['max'])
 
-        unit= bid_info['actual_bid'] / quant
+        unit= bid_info['visible_bid'] / quant
         unit= int_to_price(unit)
         unit= f'{float(unit[:-1]):.1f}{unit[-1]}'
 
@@ -175,9 +175,9 @@ warning_post: |-
 
     bid= int_to_price(x['max'])
 
-    if x['fail_code'] == 1:
+    if x['fail_code'] == '1':
       reason= f"{x['item_type']} is an invalid category"
-    elif x['fail_code'] == 2:
+    elif x['fail_code'] == '2':
       reason= f"{x['item_code']} is an invalid item number"
     else:
       reason= "[unknown reason]"

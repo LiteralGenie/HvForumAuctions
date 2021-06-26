@@ -84,8 +84,7 @@ async def scan_updates(ctx):
 
 def update_bid_cache(bid, ctx):
 	class Error(Exception):
-		def __init__(self, code):
-			self.code= code
+		pass
 
 	def update():
 		# get category
@@ -99,7 +98,7 @@ def update_bid_cache(bid, ctx):
 				cat= ctx.META['materials']['abbreviation'].lower()
 				lst= ctx.META['materials']['items']
 			else:
-				raise Error(1)
+				raise Error(1) # bad category
 
 		# get id
 		for item_id,item in lst.items():
@@ -110,17 +109,12 @@ def update_bid_cache(bid, ctx):
 					append(bid)
 				break
 		else:
-			raise Error(2)
+			raise Error(2) # bad item number
 
 	try:
 		update()
 	except Error as e:
-		if e.code == 1:
-			bid['fail_reason']= 'Invalid item type.'
-		elif e.code == 2:
-			bid['fail_reason']= 'Invalid item id.'
-
-		bid['fail_code']= e.code
+		bid['fail_code']= str(e)
 		ctx.BIDS['warnings'].append(bid)
 
 	return ctx.BIDS

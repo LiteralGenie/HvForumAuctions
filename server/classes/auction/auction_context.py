@@ -2,6 +2,7 @@ from utils.scraper_utils import get_session, do_hv_login, do_forum_login
 from utils.config_utils import load_config
 import utils
 
+# @todo: redo context -- more aggregated instead of separate META / EQUIP_DATA, etc -- its awk to repeatedly extract key to access eq data
 
 # use with async
 class AuctionContext:
@@ -21,7 +22,9 @@ class AuctionContext:
 
 		self.CACHE_DIR= f"{utils.AUCTION_CACHE_DIR}{self.folder}/"
 
-		self.META= utils.load_yaml(utils.AUCTION_DIR + f"{self.folder}.yaml", False)
+		self.META= utils.load_yaml(utils.AUCTION_DIR + f"{self.folder}.yaml",
+								   default=False,
+								   as_dict=True)
 		self.BIDS= utils.load_json(self.CACHE_DIR + "bids.json",
 												default=dict(items={}, warnings=[]))
 		self.SEEN_POSTS= utils.load_json(self.CACHE_DIR + "seen_posts.json",
@@ -40,6 +43,7 @@ class AuctionContext:
 	async def close(self):
 		await self.session.close()
 
+	# adds winning bid info to the data loaded from bids.json
 	def get_max_bids(self):
 		# inits
 		ret= {}
@@ -62,9 +66,9 @@ class AuctionContext:
 				second_max= max(0, second_max)
 
 				if max_bid['is_proxy']:
-					max_bid['actual_bid']= second_max + min_inc
+					max_bid['visible_bid']= second_max + min_inc
 				else:
-					max_bid['actual_bid']= max_bid['max']
+					max_bid['visible_bid']= max_bid['max']
 				ret[cat][item_code]= max_bid
 
 		return ret

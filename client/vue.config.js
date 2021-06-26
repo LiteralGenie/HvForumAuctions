@@ -2,19 +2,19 @@ module.exports = {
     chainWebpack: config => {
         config.module.rules.delete('eslint');
     },
-
     pages: {
-        index: {
-            entry: 'src/pages/home/main.js',
-            template: 'public/index.html',
-            filename: 'index.html',
+        proxy: {
+            entry: 'src/pages/proxy/main.js',
+            template: 'public/loading_index.html',
+            filename: 'proxy.html',
             title: 'Proxy Bids'
         },
-        timer: {
-            entry: 'src/pages/timer/main.js',
-            template: 'public/index.html',
-            filename: 'timer.html',
-            title: 'Auction Timer'
-        }
+
+        // test: {
+        //     entry: 'src/pages/test/main.js',
+        //     template: 'public/index.html',
+        //     filename: 'proxy.html',
+        //     title: 'test'
+        // },
     }
 }

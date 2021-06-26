@@ -1,18 +1,20 @@
 from tornado.web import Application, StaticFileHandler
 from classes import AuctionContext
-from .handlers import timer_handle
+from .proxy_form_handler import handle_proxy
+from .timer_handler import handle_timer
 import utils
 
 
 class Server(Application):
-    def __init__(self):
+    def __init__(self, ctx):
         # inits
         handlers= []
-        self.ctx= AuctionContext()
+        self.ctx= ctx
 
         # routes
-        handlers.append(('/timer', timer_handle(self.ctx)))
-        handlers.append(('/(bg_small_box.png)', StaticFileHandler, dict(path=utils.DATA_DIR)))
+        handlers.append(('/proxy_form', handle_proxy(self.ctx)))
+        handlers.append(('/timer', handle_timer(self.ctx)))
+
         handlers.append(('/((?:img|js|css)/.*)', StaticFileHandler, dict(path=utils.PAGES_DIR)))
 
         # start server

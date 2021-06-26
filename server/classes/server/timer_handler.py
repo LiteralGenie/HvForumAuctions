@@ -32,7 +32,7 @@ from tornado.web import RequestHandler
 import utils, time, re, base64
 
 
-def timer_handle(ctx):
+def handle_timer(ctx):
     # type: (AuctionContext) -> type
 
     class TimerHandler(RequestHandler):

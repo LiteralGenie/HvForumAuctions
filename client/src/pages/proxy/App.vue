@@ -1,15 +1,19 @@
 <template>
-  <timer/>
+    <proxy_form/>
 </template>
 
 <script>
-import timer from '../../components/timer.vue'
+import proxy_form from "../../components/proxy_form.vue"
 
 export default {
-  name: 'App',
-  components: {
-    timer
-  }
+    name: 'App',
+    components: {
+        proxy_form
+    },
+
+    created() {
+        document.querySelector("#loading").remove()
+    }
 }
 </script>
 
