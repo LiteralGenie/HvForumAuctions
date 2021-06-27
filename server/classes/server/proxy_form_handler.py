@@ -1,6 +1,40 @@
+"""
+Example server reponse to GET
+{
+  "increment": 25,
+  "items": [
+    {
+      "cat": "Wep",
+      "code": "1",
+      "name": "Legendary Ethereal Shortsword of Slaughter",
+      "current_bid": 50,
+      "bidder": "blah",
+      "link": "https://hentaiverse.org/isekai/equip/50773/41b3481860"
+    },
+    {
+      "cat": "Wep",
+      "code": "3",
+      "name": "Legendary Power Helmet of Slaughter",
+      "current_bid": 0,
+      "bidder": "",
+      "link": "https://hentaiverse.org/isekai/equip/50773/41b3481860"
+    }
+  ]
+}
+
+Example client POST data
+{ 
+    "user": blahblah
+    "items": [
+        { "cat": "Wep", "code": "1", "bid": 25000},
+        { "cat": "Arm", "code": "3", "bid": 123458},
+    ]
+}
+"""
+
 from tornado.web import RequestHandler
 from ..auction import AuctionContext, EquipScraper
-
+import json
 
 
 def handle_proxy(ctx):
@@ -32,7 +66,7 @@ def handle_proxy(ctx):
 
                     eq= dict()
                     eq['cat']= cat
-                    eq['code']= code
+                    eq['code']= str(code)
                     eq['name']= data['name']
                     eq['link']=  link
 
@@ -45,8 +79,12 @@ def handle_proxy(ctx):
 
         # proxy bid submissions
         def post(self):
+            # todo: log POST / validation error
+            data= json.loads(self.request.body.decode('utf-8'))
+            validate_POST(data)
 
-            pass
+            result= ctx.create_proxy_bids(data)
+            self.write(result['key'])
 
         # allow CORS
         def options(self):
@@ -55,4 +93,18 @@ def handle_proxy(ctx):
     return FormHandler
 
 
-# def validate_bid()
+def validate_POST(data):
+    # check username
+    assert str(data['user']), "empty username"
+
+    # check item dicts
+    for it in data['items']:
+        for word in ['cat', 'code', 'bid']:
+            # check key existence
+            assert word in it, f'missing key: {word}'
+            # check non-empty
+            assert str(it[word]), f'empty value for key: {word}'
+
+        # check for numerical, positive bid
+        assert type(it['bid']) == int, f'bid is not an int: {it["bid"]}'
+        assert it['bid'] > 0, f'bid is negative: {it["bid"]}'

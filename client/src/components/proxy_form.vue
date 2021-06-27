@@ -1,6 +1,3 @@
-// @todo: document input data structure
-
-
 <template>
     <div id="root">
         <u><h3>Proxy Bid Form</h3></u>
@@ -66,8 +63,7 @@
             NUM_PAGES: 3,
             page_num: 0,
 
-            status: {},
-            error_counts: {},
+            status: {}
         }},
         
         async created() {            
@@ -97,8 +93,9 @@
 
         methods: {
             // data initialization
-            init_ctx(factor=1000) {
+            init_ctx() {
                 let ret= JSON.parse(JSON.stringify(this.RESP_DATA))
+                let factor= process.env.VUE_APP_SCALE_FACTOR
 
                 // downscale by order of magnitude for convienence
                 ret['increment']/= factor

@@ -31,7 +31,7 @@
     
     export default {
         props: ["ctx"],
-        inject: ["filter_selected"],
+        inject: ["filter_selected", "set_status"],
 
         data() { return {
             disabled: false
@@ -40,9 +40,11 @@
         methods: {
             async submit() {
                 this.disabled= true
+                this.set_status("", "bid_code_request", { level:"critical" })
 
                 let payload= this.get_payload(this.ctx)
-                resp= await this.$http.post(this.CONFIG.server_url, payload)
+                console.log(payload)
+                let resp= await this.$http.post(process.env.VUE_APP_SERVER_URL + "/proxy_form", payload)
                 console.log(resp)
             },
 
@@ -58,7 +60,7 @@
                     let tmp= {}
                     tmp.cat= it.cat
                     tmp.code= it.code
-                    tmp.bid= it.proxy_bid
+                    tmp.bid= it.proxy_bid * process.env.VUE_APP_SCALE_FACTOR
 
                     ret.items.push(tmp)
                 })

@@ -1,5 +1,3 @@
-# @todo: refactor utility / format functions to utils file
-
 header: |-
   <%
   from utils.format_utils import color, wrap
@@ -170,7 +168,7 @@ warning_post: |-
     name= src['user']['name']
 
     link= None
-    if x['is_forum_post']:
+    if !x['is_proxy']:
       link= f"https://forums.e-hentai.org/index.php?showtopic={META['thread_id']}&view=findpost&p={src['id']}"
 
     bid= int_to_price(x['max'])

@@ -32,6 +32,7 @@ from tornado.web import RequestHandler
 import utils, time, re, base64
 
 
+# @todo: random bgs
 def handle_timer(ctx):
     # type: (AuctionContext) -> type
 

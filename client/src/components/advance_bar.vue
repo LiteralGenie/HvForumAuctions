@@ -3,7 +3,8 @@
         <button 
         id="prev"
         :class="{unavailable: (page_num < 1)}" 
-        @click="$emit('update:page_num', --page_num)">
+        @click="$emit('update:page_num', --page_num)"
+        :disabled="(critical)">
            🠘
         </button>
         
@@ -47,6 +48,18 @@
                 // disable next-button if current page equals max_page
                 return this.page_num >= max_page
             },
+
+            critical() {
+                let status= this.get_status()
+
+                let flag= Object.values(status).some(dct => {
+                    return Object.values(dct).some(info => {
+                        return info.level === "critical"  
+                    })
+                })
+                
+                return flag
+            }
         },
     }
 </script>

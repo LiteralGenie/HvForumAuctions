@@ -1,0 +1,77 @@
+{
+  "bids": [
+    {
+      "code": "IndelibleRegister",
+      "key": "zrmp3ey",
+      "bids": {
+        "user": "321",
+        "items": [
+          {
+            "cat": "Wep",
+            "code": "1",
+            "bid": 25000
+          },
+          {
+            "cat": "Wep",
+            "code": "3",
+            "bid": 25000
+          }
+        ]
+      },
+      "start": 1624773287.2538939,
+      "end": 1624774187.2538939
+    },
+    {
+      "code": "NutritiousBunch",
+      "key": "uyoadvh",
+      "bids": {
+        "user": "312",
+        "items": [
+          {
+            "cat": "Arm",
+            "code": "1",
+            "bid": 25000
+          },
+          {
+            "cat": "Wep",
+            "code": "3",
+            "bid": 25000
+          }
+        ]
+      },
+      "start": 1624774538.896383,
+      "end": 1624775438.896383
+    },
+    {
+      "code": "SwelteringStomach",
+      "key": "embgzeu",
+      "bids": {
+        "user": "321321",
+        "items": [
+          {
+            "cat": "Arm",
+            "code": "1",
+            "bid": 25000
+          },
+          {
+            "cat": "Wep",
+            "code": "1",
+            "bid": 25000
+          }
+        ]
+      },
+      "start": 1624774546.8794518,
+      "end": 1624775446.8794518
+    }
+  ],
+  "codes": [
+    "IndelibleRegister",
+    "NutritiousBunch",
+    "SwelteringStomach"
+  ],
+  "links": [
+    "zrmp3ey",
+    "uyoadvh",
+    "embgzeu"
+  ]
+}

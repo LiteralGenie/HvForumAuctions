@@ -33,7 +33,9 @@
         },
 
         computed: {
-            errors() { return this._filter('error') },
+            errors() { 
+                return this._filter('error').concat(this._filter('critical')) 
+            },
             warnings() { return this._filter('warn') },
         },
     }

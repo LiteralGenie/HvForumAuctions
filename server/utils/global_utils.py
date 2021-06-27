@@ -11,6 +11,7 @@ LOG_DIR= PROJ_DIR + "logs" + sep
 
 LOGGING_CONFIG= CONFIG_DIR + "logging.yaml" # @todo
 CONFIG_FILE= CONFIG_DIR + "config.yaml"
+DICTIONARY_FILE= CONFIG_DIR + "words.yaml"
 RANGES_FILE= DATA_DIR + "ranges.json"
 
 AUCTION_DIR= DATA_DIR + "auctions/"

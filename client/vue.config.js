@@ -4,9 +4,9 @@ module.exports = {
     },
     pages: {
         proxy: {
-            entry: 'src/pages/proxy/main.js',
+            entry: 'src/pages/proxy_form/main.js',
             template: 'public/loading_index.html',
-            filename: 'proxy.html',
+            filename: 'proxy_form.html',
             title: 'Proxy Bids'
         },
 
