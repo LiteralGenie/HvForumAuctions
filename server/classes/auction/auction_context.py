@@ -234,6 +234,7 @@ class AuctionContext:
         # return
         self.last_check= time.time()
         utils.dump_json(self.BIDS, self.BID_FILE)
+        utils.dump_json(self.PROXIES, self.PROXY_FILE)
         return has_new
 
     async def _update_thread(self):

@@ -21,7 +21,6 @@
                     <a :href="ctx.thread">auction thread</a>
                     with your bid code (<b>{{ctx.code}}</b>).
                     <br>
-                    After doing so, you can press the button below to refresh this page.
                 </div>
                 <button
                 :disabled="disabled"
@@ -176,11 +175,11 @@
                 let cd= Math.ceil(this.cooldown)
 
                 if(cd > 0) {
-                    return `Updating in ${cd}s...`
+                    return `Checking thread in ${cd}s...`
                 } else if(this.disabled) {
                     return `Waiting for server response...`
                 } else {
-                    return 'Update'
+                    return 'Check thread'
                 }
             }
         },
