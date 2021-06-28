@@ -29,7 +29,7 @@ SOFTWARE.
 from classes.auction import AuctionContext
 
 from tornado.web import RequestHandler
-import utils, time, re, base64
+import utils, time, re, base64, glob, random
 
 
 # @todo: random bgs
@@ -44,8 +44,7 @@ def get(ctx):
 
             dynamic= '\n'.join(get_style(ctx.META['end']))
 
-            with open(utils.DATA_DIR + "bg_small_box.png", 'rb') as file:
-                bg_img= base64.b64encode(file.read()).decode('utf-8')
+            bg_img= roll_bg()
 
             # svg
             resp= f"""
@@ -73,6 +72,15 @@ def get(ctx):
 
             self.write(resp)
             self.set_header('content-type', 'image/svg+xml')
+
+    def roll_bg():
+        lst= list(glob.glob(utils.TIMER_BACKGROUND_DIR))
+        assert lst, f'No timer backgrounds in {utils.TIMER_BACKGROUND_DIR}'
+
+        fp= random.choice(lst)
+        with open(fp) as file:
+            bg_img= base64.b64encode(file.read()).decode('utf-8')
+            return bg_img
 
     def get_style(timestamp):
         styles= []

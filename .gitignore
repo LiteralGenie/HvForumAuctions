@@ -3,3 +3,4 @@
 /server/venv/
 /.idea/
 /client/src/pages/test/
+/data/timer_backgrounds/*
