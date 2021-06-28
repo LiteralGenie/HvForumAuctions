@@ -74,11 +74,11 @@ def get(ctx):
             self.set_header('content-type', 'image/svg+xml')
 
     def roll_bg():
-        lst= list(glob.glob(utils.TIMER_BACKGROUND_DIR))
+        lst= list(glob.glob(utils.TIMER_BACKGROUND_DIR + "*"))
         assert lst, f'No timer backgrounds in {utils.TIMER_BACKGROUND_DIR}'
 
         fp= random.choice(lst)
-        with open(fp) as file:
+        with open(fp, 'rb') as file:
             bg_img= base64.b64encode(file.read()).decode('utf-8')
             return bg_img
 
