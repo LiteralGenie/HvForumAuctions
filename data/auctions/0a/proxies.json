@@ -69,18 +69,40 @@
       "start": 1624876220.3563178,
       "end": 1624877120.3563178,
       "confirmed": false
+    },
+    {
+      "code": "YawningDeterminedBottle",
+      "key": "8c3hzxk",
+      "user": "프레이",
+      "items": [
+        {
+          "cat": "Arm",
+          "code": "1",
+          "bid": 9999000
+        },
+        {
+          "cat": "Wep",
+          "code": "3",
+          "bid": 155000
+        }
+      ],
+      "start": 1624885027.936595,
+      "end": 1624885927.936595,
+      "confirmed": false
     }
   ],
   "codes": [
     "NeedyElatedTank",
     "RealisticTemptingObjective",
     "AcceptableCarelessBend",
-    "HummingPoorSeries"
+    "HummingPoorSeries",
+    "YawningDeterminedBottle"
   ],
   "keys": [
     "i19npx5",
     "dyrodcq",
     "ihreu1a",
-    "jy6dlq5"
+    "jy6dlq5",
+    "8c3hzxk"
   ]
 }

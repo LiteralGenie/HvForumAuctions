@@ -3,6 +3,19 @@
     "Wep": {
       "1": [
         {
+          "item_type": "Wep",
+          "item_code": "1",
+          "max": 1335000,
+          "is_proxy": true,
+          "user": "프레이",
+          "time": 1624873982.51926,
+          "source": {
+            "code": "RealisticTemptingObjective",
+            "key": "dyrodcq"
+          },
+          "visible_bid": 25000
+        },
+        {
           "item_type": "wep",
           "item_code": "1",
           "max": 310000.0,
@@ -58,17 +71,33 @@
           },
           "user": "프레이",
           "time": 1624828262.3729968
+        }
+      ],
+      "3": [
+        {
+          "item_type": "Wep",
+          "item_code": "3",
+          "max": 13.0,
+          "is_proxy": false,
+          "source": {
+            "index": 18,
+            "uid": "5648780",
+            "pid": "5934865",
+            "text": "Wep_3 13a25b\nWep_2 wEp1 wowowo"
+          },
+          "user": "OnceForAll",
+          "time": 1624876622.2497718
         },
         {
           "item_type": "Wep",
-          "item_code": "1",
-          "max": 1335000,
+          "item_code": "3",
+          "max": 155000,
           "is_proxy": true,
           "user": "프레이",
-          "time": 1624873982.51926,
+          "time": 1624885027.936595,
           "source": {
-            "code": "RealisticTemptingObjective",
-            "key": "dyrodcq"
+            "code": "YawningDeterminedBottle",
+            "key": "8c3hzxk"
           }
         }
       ]
@@ -109,6 +138,33 @@
     "Arm": {
       "1": [
         {
+          "item_type": "Arm",
+          "item_code": "1",
+          "max": 2025000,
+          "is_proxy": true,
+          "user": "프레이",
+          "time": 1624873938.9091003,
+          "source": {
+            "code": "NeedyElatedTank",
+            "key": "i19npx5"
+          },
+          "visible_bid": 35050.0
+        },
+        {
+          "item_type": "Arm",
+          "item_code": "1",
+          "max": 10050.0,
+          "is_proxy": false,
+          "source": {
+            "index": 15,
+            "uid": "5648780",
+            "pid": "5934848",
+            "text": "Arm_1 10050a"
+          },
+          "user": "OnceForAll",
+          "time": 1624873787.3967738
+        },
+        {
           "item_type": "arm",
           "item_code": "1",
           "max": 10000.0,
@@ -126,27 +182,13 @@
         {
           "item_type": "Arm",
           "item_code": "1",
-          "max": 10050.0,
-          "is_proxy": false,
-          "source": {
-            "index": 15,
-            "uid": "5648780",
-            "pid": "5934848",
-            "text": "Arm_1 10050a"
-          },
-          "user": "OnceForAll",
-          "time": 1624873787.3967738
-        },
-        {
-          "item_type": "Arm",
-          "item_code": "1",
-          "max": 2025000,
+          "max": 9999000,
           "is_proxy": true,
           "user": "프레이",
-          "time": 1624873938.9091003,
+          "time": 1624885027.936595,
           "source": {
-            "code": "NeedyElatedTank",
-            "key": "i19npx5"
+            "code": "YawningDeterminedBottle",
+            "key": "8c3hzxk"
           }
         }
       ]
