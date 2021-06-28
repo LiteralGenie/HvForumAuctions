@@ -45,7 +45,7 @@ class AuctionContext:
     def __init__(self):
         # paths
         self.CONFIG= load_config()
-        self.FOLDER= self.CONFIG['current_auction']
+        self.FOLDER= str(self.CONFIG['current_auction'])
         self.load_paths()
 
         # files
@@ -182,8 +182,9 @@ class AuctionContext:
             await self._update_thread()
 
     async def do_thread_scan(self):
+        ret= self.last_check == 0
         if self.get_cooldown() <= 0:
-            return await self._scan_updates()
+            ret|= await self._scan_updates()
         return None
 
     async def _scan_updates(self):
