@@ -183,7 +183,8 @@ class AuctionContext:
 
     async def do_thread_scan(self):
         if self.get_cooldown() <= 0:
-            return await self._scan_updates()
+            await self._scan_updates()
+            return True
         return None
 
     async def _scan_updates(self):
