@@ -1,14 +1,14 @@
 <template>
-    <proxy_form/>
+    <proxy_view/>
 </template>
 
 <script>
-import proxy_form from "../../components/proxy_form.vue"
+import proxy_view from "../../components/proxy_view.vue"
 
 export default {
     name: 'App',
     components: {
-        proxy_form
+        proxy_view
     },
 
     created() {

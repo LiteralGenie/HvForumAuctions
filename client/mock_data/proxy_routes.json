@@ -1,0 +1,7 @@
+{
+    "/api/proxy/view*": "/proxy_bid_view",
+    "/api/proxy/form/": "/proxy_form_submit",
+    "/proxy/form/": "/proxy_form_view",
+    "/api/update_check": "/update_check",
+    "/update": "/update_request"
+}

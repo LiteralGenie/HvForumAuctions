@@ -20,7 +20,7 @@
         <button 
         :disabled="disabled">
             <span v-if="!disabled">Request bid code</span>
-            <span v-if="disabled">Request submitted!</span>
+            <span v-if="disabled">Waiting for server...</span>
         </button>
     </form>
 </template>
@@ -43,9 +43,11 @@
                 this.set_status("", "bid_code_request", { level:"critical" })
 
                 let payload= this.get_payload(this.ctx)
-                console.log(payload)
-                let resp= await this.$http.post(process.env.VUE_APP_SERVER_URL + "/proxy_form", payload)
-                console.log(resp)
+                console.log('sending', payload)
+                let resp= await this.$http.post(process.env.VUE_APP_SERVER_URL + "/api/proxy/form", payload)
+                console.log('response', resp)
+
+                // window.location.href= process.env.VUE_APP_SERVER_URL + "/proxy/view?key=" + resp.data.key
             },
 
             get_payload(ctx) {

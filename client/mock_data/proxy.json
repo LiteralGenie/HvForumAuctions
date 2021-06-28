@@ -1,0 +1,107 @@
+{
+    "proxy_form_view": {
+        "increment": 25000,
+        "items": [
+            {
+                "cat": "Wep",
+                "code": "1",
+                "current_bid": 50000,
+                "bidder": "blah",
+
+                "name": "Legendary Ethereal Shortsword of Slaughter",
+                "link": "https://hentaiverse.org/isekai/equip/50773/41b3481860"
+            },
+            {
+                "cat": "Wep",
+                "code": "3",
+                "current_bid": 0,
+                "bidder": "",
+
+                "name": "Legendary Power Helmet of Slaughter",
+                "link": "https://hentaiverse.org/isekai/equip/50773/41b3481860"
+            },
+            {
+                "cat": "Wep",
+                "code": "5",
+                "current_bid": 0,
+                "bidder": "",
+                
+                "name": "Legendary Agile Shade Leggings of Negation",
+                "link": "https://hentaiverse.org/isekai/equip/50773/41b3481860"
+            },
+            {
+                "cat": "Wep",
+                "code": "7",
+                "current_bid": 0,
+                "bidder": "",
+
+                "name": "Legenadry Reinforced Leather Gauntlets of the Shadowdancer",
+                "link": "https://hentaiverse.org/isekai/equip/50773/41b3481860"
+            },
+            {
+                "cat": "Mat",
+                "code": "72",
+                "current_bid": 0,
+                "bidder": "",
+                "link": "",
+
+                "name": "48x Energy Drink"
+            }
+        ]
+    },
+
+    "proxy_bid_view": { 
+        "user": "user_user",
+        "confirmed": false,
+        "key": "key_key",
+        "code": "code_code",
+        "start": 1624804494,
+        "end": 1624805094,
+
+        "thread": "https://forums.e-hentai.org/index.php?showtopic=249142",
+
+        "items": [
+            { "cat": "Wep", 
+                "code": "1", 
+                "bid": 25000, 
+
+                "name": "Legendary Ethereal Shortsword of Slaughter",
+                "link": "https://hentaiverse.org/isekai/equip/45866/1f7cadc535",
+                "winner": {
+                    "user": "user that isnt you",
+                    "bid": 1000000
+                }},
+            { 
+                "cat": "Arm", 
+                "code": "3", 
+                "bid": 125000, 
+
+                "name": "item 2",
+                "link": "https://hentaiverse.org/isekai/equip/45866/1f7cadc535",
+                "winner": {
+                    "user": "user_user",
+                    "bid": 12500
+                }},
+            { 
+                "cat": "Mat", 
+                "code": "5", 
+                "bid": 125000, 
+
+                "name": "mat 2",
+                "winner": {
+                    "user": "user_user",
+                    "bid": 12500
+                }}
+        ]
+    },
+
+    "proxy_form_submit": {
+        "key": "aaaaa"
+    },
+
+    "update_check": {
+        "cooldown": 3.5
+    },
+
+    "update_request": {}
+}

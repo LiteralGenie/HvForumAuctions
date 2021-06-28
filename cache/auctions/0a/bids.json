@@ -5,21 +5,183 @@
         {
           "item_type": "wep",
           "item_code": "1",
-          "max": 500000.0,
+          "max": 310000.0,
           "is_proxy": false,
           "source": {
-            "index": 5,
-            "id": "5932154",
-            "text": "wep1 500k",
-            "user": {
-              "name": "프레이",
-              "id": "3950842"
-            },
-            "time": 1624557004.0494096
+            "index": 13,
+            "uid": "3950842",
+            "pid": "5934810",
+            "text": "wep1 310k"
+          },
+          "user": "프레이",
+          "time": 1624867562.4079955,
+          "visible_bid": 310000.0
+        },
+        {
+          "item_type": "wep",
+          "item_code": "1",
+          "max": 300000.0,
+          "is_proxy": false,
+          "source": {
+            "index": 8,
+            "uid": "3950842",
+            "pid": "5934504",
+            "text": "wep 1 300k"
+          },
+          "user": "프레이",
+          "time": 1624828322.388989
+        },
+        {
+          "item_type": "wep",
+          "item_code": "1",
+          "max": 50000.0,
+          "is_proxy": false,
+          "source": {
+            "index": 3,
+            "uid": "3950842",
+            "pid": "5934499",
+            "text": "wep1 50k"
+          },
+          "user": "프레이",
+          "time": 1624828262.3689878
+        },
+        {
+          "item_type": "wep",
+          "item_code": "1",
+          "max": 50000.0,
+          "is_proxy": false,
+          "source": {
+            "index": 4,
+            "uid": "3950842",
+            "pid": "5934500",
+            "text": "wep1 50k"
+          },
+          "user": "프레이",
+          "time": 1624828262.3729968
+        },
+        {
+          "item_type": "Wep",
+          "item_code": "1",
+          "max": 1335000,
+          "is_proxy": true,
+          "user": "프레이",
+          "time": 1624873982.51926,
+          "source": {
+            "code": "RealisticTemptingObjective",
+            "key": "dyrodcq"
+          }
+        }
+      ]
+    },
+    "Mat": {
+      "1": [
+        {
+          "item_type": "mat",
+          "item_code": "1",
+          "max": 120000.0,
+          "is_proxy": false,
+          "source": {
+            "index": 10,
+            "uid": "3950842",
+            "pid": "5934798",
+            "text": "mat1 120k"
+          },
+          "user": "프레이",
+          "time": 1624864082.3950224,
+          "visible_bid": 120000.0
+        },
+        {
+          "item_type": "mat",
+          "item_code": "1",
+          "max": 10000.0,
+          "is_proxy": false,
+          "source": {
+            "index": 7,
+            "uid": "3950842",
+            "pid": "5934503",
+            "text": "mat1 10k"
+          },
+          "user": "프레이",
+          "time": 1624828322.3850207
+        }
+      ]
+    },
+    "Arm": {
+      "1": [
+        {
+          "item_type": "arm",
+          "item_code": "1",
+          "max": 10000.0,
+          "is_proxy": false,
+          "source": {
+            "index": 12,
+            "uid": "3950842",
+            "pid": "5934809",
+            "text": "arm1 10k"
+          },
+          "user": "프레이",
+          "time": 1624867502.4039953,
+          "visible_bid": 10000.0
+        },
+        {
+          "item_type": "Arm",
+          "item_code": "1",
+          "max": 10050.0,
+          "is_proxy": false,
+          "source": {
+            "index": 15,
+            "uid": "5648780",
+            "pid": "5934848",
+            "text": "Arm_1 10050a"
+          },
+          "user": "OnceForAll",
+          "time": 1624873787.3967738
+        },
+        {
+          "item_type": "Arm",
+          "item_code": "1",
+          "max": 2025000,
+          "is_proxy": true,
+          "user": "프레이",
+          "time": 1624873938.9091003,
+          "source": {
+            "code": "NeedyElatedTank",
+            "key": "i19npx5"
           }
         }
       ]
     }
   },
-  "warnings": []
+  "warnings": [
+    {
+      "item_type": "arm",
+      "item_code": "3",
+      "max": 5000000.0,
+      "is_proxy": false,
+      "source": {
+        "index": 5,
+        "uid": "3950842",
+        "pid": "5934501",
+        "text": "arm_3 5m"
+      },
+      "user": "프레이",
+      "time": 1624828262.3769956,
+      "fail_code": "2"
+    },
+    {
+      "item_type": "mat",
+      "item_code": "99",
+      "max": 100000.0,
+      "is_proxy": false,
+      "source": {
+        "index": 6,
+        "uid": "3950842",
+        "pid": "5934502",
+        "text": "mat99 100000"
+      },
+      "user": "프레이",
+      "time": 1624828322.3810215,
+      "fail_code": "2"
+    }
+  ]
 }

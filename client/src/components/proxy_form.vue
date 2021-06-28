@@ -99,7 +99,7 @@
 
                 // downscale by order of magnitude for convienence
                 ret['increment']/= factor
-                ret['items'].map(dct => {
+                ret['items'].forEach(dct => {
                     dct['current_bid']/= factor
                 })
                 

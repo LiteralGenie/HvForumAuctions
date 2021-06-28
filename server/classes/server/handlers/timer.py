@@ -26,14 +26,14 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 """
 
-from ..auction import AuctionContext
+from classes.auction import AuctionContext
 
 from tornado.web import RequestHandler
 import utils, time, re, base64
 
 
 # @todo: random bgs
-def handle_timer(ctx):
+def get(ctx):
     # type: (AuctionContext) -> type
 
     class TimerHandler(RequestHandler):

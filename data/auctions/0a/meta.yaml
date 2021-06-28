@@ -1,9 +1,9 @@
 number: 0a
 end: 1624737457
 
-thread_id: 249268
-main_post_id: 5931936
-warning_post_id: 5931937
+thread_id: 249379
+main_post_id: 5934497
+warning_post_id: 5934498
 
 equips:
   - abbreviation: Arm
@@ -25,4 +25,4 @@ materials:
   abbreviation: Mat
   category_name: Materials
   items:
-    1: 80 Energy Drink
+    1: [80, Energy Drink]

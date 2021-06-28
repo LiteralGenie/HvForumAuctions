@@ -1,5 +1,4 @@
 import asyncio
-from utils.auction_utils import scan_updates, update_thread
 from classes import AuctionContext
 
 async def main():

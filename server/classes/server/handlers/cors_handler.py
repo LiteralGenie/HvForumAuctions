@@ -1,0 +1,13 @@
+from tornado.web import RequestHandler
+
+
+# allow CORS
+class CorsHandler(RequestHandler):
+    def set_default_headers(self):
+        self.set_header("Access-Control-Allow-Origin", "*")
+        self.set_header("Access-Control-Allow-Headers", "*")
+        self.set_header('Access-Control-Allow-Methods', 'POST, GET, OPTIONS')
+        self.set_header('Content-type', 'application/json')
+
+    def options(self):
+        pass

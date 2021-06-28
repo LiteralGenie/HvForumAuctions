@@ -86,7 +86,7 @@
     "tradeable": true,
     "soulbound": false,
     "level": 142,
-    "owner": "MoogleMail",
+    "owner": "프레이",
     "percentiles": {
       "Attack Accuracy": 42.36006051437212,
       "Attack Crit Chance": 70.3448275862069,
@@ -129,7 +129,7 @@
     "tradeable": true,
     "soulbound": false,
     "level": 144,
-    "owner": "Firew",
+    "owner": "프레이",
     "percentiles": {
       "Physical Mitigation": 19.04761904761907,
       "Magical Mitigation": 63.41463414634139,

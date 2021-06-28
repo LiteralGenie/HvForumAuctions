@@ -3,11 +3,18 @@ module.exports = {
         config.module.rules.delete('eslint');
     },
     pages: {
-        proxy: {
+        proxy_form: {
             entry: 'src/pages/proxy_form/main.js',
             template: 'public/loading_index.html',
             filename: 'proxy_form.html',
-            title: 'Proxy Bids'
+            title: 'Proxy Bid Form'
+        },
+
+        proxy_view: {
+            entry: 'src/pages/proxy_view/main.js',
+            template: 'public/loading_index.html',
+            filename: 'proxy_view.html',
+            title: 'Your Proxy Bids'
         },
 
         // test: {

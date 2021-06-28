@@ -8,8 +8,7 @@ header: |-
 
   [size=3][u]Rules[/u][/size]:[list]
   [*] To place a bid, write the item code + price. For example, ${green('[Shld5] 5k')} or ${green('Shld_5 3.2m')}.
-  [*] If you post the [b]winning bid[/b] within 48 hours of this post, you will receive a ${green('20% discount')}.
-  [*] Minimum bid increment is ${red('25k (real credits, not ISK')}.
+  [*] Minimum bid increment is ${red('25k (real credits, not ISK)')}.
   [*] [b]Bids can not be cancelled![/b] If the thread has not been updated, you can still edit your post, but otherwise, please send me a [b]forum PM[/b] to edit your bid.
   [/list]
 
@@ -49,7 +48,7 @@ equip_section: |-
         tmp= MAX_BIDS[CATEGORY['abbreviation']][str(num)]
         max= int_to_price(tmp['max'])
         current= int_to_price(tmp['visible_bid'])
-        user= f"{tmp['source']['user']['name']}"
+        user= f"{tmp['user']}"
         bid= f"[color=orange][b]{user} {current}[/b][/color]"
 
 
@@ -71,7 +70,7 @@ equip_section: |-
   ${ret}
 
 # kwargs: CATEGORY, MAX_BIDS
-item_section: |-
+material_section: |-
   <%
     from utils.format_utils import wrap
     from utils.auction_utils import int_to_price
@@ -84,10 +83,10 @@ item_section: |-
     # loop items
     for num,item in CATEGORY['items'].items():
       # ...
-      quant,item_name= item.split(" ", maxsplit=1)
+      [quant,item_name]= item
       quant= int(quant)
       code= f"[{CATEGORY['abbreviation']}_{num}]"
-      abbrv= CATEGORY['abbreviation'].lower()
+      abbrv= CATEGORY['abbreviation']
       comment= CATEGORY.get('comments',{}).get(num, "")
 
       # gets bids
@@ -96,7 +95,7 @@ item_section: |-
       else:
         bid_info= MAX_BIDS[abbrv][str(num)]
 
-        user= f"{bid_info['source']['user']['name']}"
+        user= f"{bid_info['user']}"
         current= int_to_price(bid_info['visible_bid'])
         max= int_to_price(bid_info['max'])
 
@@ -104,7 +103,7 @@ item_section: |-
         unit= int_to_price(unit)
         unit= f'{float(unit[:-1]):.1f}{unit[-1]}'
 
-        bid= f"[color=orange][b]{n} {current}[/b][/color]"
+        bid= f"[color=orange][b]{num} {current}[/b][/color]"
         bid= f"{user} {current}"
         bid= wrap(bid, 'b')
         bid= wrap(bid, 'color', 'orange')
@@ -142,7 +141,7 @@ main_post: |-
 
     # materials
     cat= META['materials']
-    sect= render(TEMPLATES['item_section'],
+    sect= render(TEMPLATES['material_section'],
                  CATEGORY=cat,
                  MAX_BIDS=MAX_BIDS)
     sections.append(sect)
@@ -164,12 +163,11 @@ warning_post: |-
 
   for i,x in enumerate(BIDS['warnings']):
     line= ""
-    src= x['source']
-    name= src['user']['name']
+    name= x['user']
 
     link= None
-    if !x['is_proxy']:
-      link= f"https://forums.e-hentai.org/index.php?showtopic={META['thread_id']}&view=findpost&p={src['id']}"
+    if not x['is_proxy']:
+      link= f"https://forums.e-hentai.org/index.php?showtopic={META['thread_id']}&view=findpost&p={x['source']['pid']}"
 
     bid= int_to_price(x['max'])
 
@@ -180,8 +178,8 @@ warning_post: |-
     else:
       reason= "[unknown reason]"
 
-    if link:
-      line+= f"[url={link}]#{src['index']}[/url] "
+    if link and x['source'].get('index'):
+      line+= f"[url={link}]#{x['source']['index']}[/url] "
     line+= f"{name} bid "
     if bid:
       line+= f"{bid} "

@@ -1,7 +1,5 @@
 from tornado.web import Application, StaticFileHandler
-from classes import AuctionContext
-from .proxy_form_handler import handle_proxy
-from .timer_handler import handle_timer
+from .handlers import proxy_view, proxy_form, timer, update
 import utils
 
 
@@ -12,8 +10,16 @@ class Server(Application):
         self.ctx= ctx
 
         # routes
-        handlers.append(('/proxy_form', handle_proxy(self.ctx)))
-        handlers.append(('/timer', handle_timer(self.ctx)))
+        handlers.append(('/update',           update.get_update(ctx)))
+        handlers.append(('/api/update_check', update.get_check(ctx)))
+
+        handlers.append(('/proxy/form',     proxy_form.get(ctx)))
+        handlers.append(('/api/proxy/form', proxy_form.post(ctx)))
+
+        handlers.append(('/proxy/view',     proxy_view.get_user_view(ctx)))
+        handlers.append(('/api/proxy/view', proxy_view.get_api_view(ctx)))
+
+        handlers.append(('/timer', timer.get(ctx)))
 
         handlers.append(('/((?:img|js|css)/.*)', StaticFileHandler, dict(path=utils.PAGES_DIR)))
 
