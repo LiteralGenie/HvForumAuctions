@@ -14,7 +14,7 @@ def get_update(ctx):
     # type: (AuctionContext) -> type
     class UpdateHandler(CorsHandler):
         async def get(self):
-            # @todo: redirect
             await ctx.do_thread_update()
+            self.redirect(ctx.thread_link)
 
     return UpdateHandler
