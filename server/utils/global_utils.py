@@ -21,4 +21,4 @@ AUCTION_FORMAT_CONFIG= CONFIG_DIR + "format_settings.yaml"
 
 PAGES_DIR= PROJ_DIR + sep + "client" + sep + "dist" + sep
 TIMER_PAGE= PAGES_DIR + "timer_page.html"
-TIMER_BACKGROUND_DIR= "timer_backgrounds" + sep
+TIMER_BACKGROUND_DIR= DATA_DIR + "timer_backgrounds" + sep
