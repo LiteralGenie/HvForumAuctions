@@ -149,7 +149,7 @@ async def get_new_posts(ctx):
     while flag:
         # inits
         page_link= f"{thread_link}&st={ctx.SEEN_POSTS['next_index']}"
-        print('getting', page_link) #@todo
+        print('getting', page_link) #@todo log
         html= await get_html(page_link, ctx.session)
         flag= False
 
