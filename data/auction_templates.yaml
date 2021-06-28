@@ -4,7 +4,7 @@ header: |-
   green= lambda x: color(x, '00aa00')
   red= lambda x: color(x, 'ff0000')
   %> \
-  [url=https://e34.site/auction/update][img]https://e34.site/auction/timer.png[/img][/url]
+  [url=https://auction.e33.moe/update][img]https://auction.e33.moe/timer#.png[/img][/url]
 
   [size=3][u]Rules[/u][/size]:[list]
   [*] To place a bid, write the item code + price. For example, ${green('[Shld5] 5k')} or ${green('Shld_5 3.2m')}.

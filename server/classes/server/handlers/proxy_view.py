@@ -57,6 +57,7 @@ Example POST payload
 }
 """
 
+import utils
 from .cors_handler import CorsHandler
 from classes.auction import AuctionContext, EquipScraper
 import json
@@ -67,7 +68,7 @@ def get_user_view(ctx):
     class UserViewHandler(CorsHandler):
         # get landing page for viewing bids
         def get(self):
-            pass # @todo
+            self.render(utils.PAGES_DIR + "proxy_view.html")
 
     return UserViewHandler
 

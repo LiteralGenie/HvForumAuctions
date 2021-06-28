@@ -14,7 +14,7 @@ class Server(Application):
         handlers.append(('/api/update_check', update.get_check(ctx)))
 
         handlers.append(('/proxy/form',     proxy_form.get(ctx)))
-        handlers.append(('/api/proxy/form', proxy_form.post(ctx)))
+        handlers.append(('/api/proxy/form', proxy_form.api(ctx)))
 
         handlers.append(('/proxy/view',     proxy_view.get_user_view(ctx)))
         handlers.append(('/api/proxy/view', proxy_view.get_api_view(ctx)))

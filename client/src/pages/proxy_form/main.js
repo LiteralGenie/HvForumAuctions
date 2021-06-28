@@ -6,7 +6,7 @@ import VueAxios from 'vue-axios'
 
 // fetch data
 async function load_data() {
-    let target= process.env.VUE_APP_SERVER_URL + "/proxy/form"
+    let target= process.env.VUE_APP_SERVER_URL + "/api/proxy/form"
     let data= (await axios.get(target)).data
     
     console.log(target, data)    

@@ -47,7 +47,7 @@
                 let resp= await this.$http.post(process.env.VUE_APP_SERVER_URL + "/api/proxy/form", payload)
                 console.log('response', resp)
 
-                // window.location.href= process.env.VUE_APP_SERVER_URL + "/proxy/view?key=" + resp.data.key
+                window.location.href= process.env.VUE_APP_SERVER_URL + "/proxy/view?key=" + resp.data.key
             },
 
             get_payload(ctx) {

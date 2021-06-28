@@ -34,12 +34,20 @@ Example POST payload
 
 from .cors_handler import CorsHandler
 from classes.auction import AuctionContext, EquipScraper
-import json
+import json, utils
 
 
 def get(ctx):
     # type: (AuctionContext) -> type
     class FormGetHandler(CorsHandler):
+        def get(self):
+            return self.render(utils.PAGES_DIR + "proxy_form.html")
+
+    return FormGetHandler
+
+def api(ctx):
+    # type: (AuctionContext) -> type
+    class FormApiHandler(CorsHandler):
         # summarize and repackage meta / bid info for frontend
         def get(self):
             ret= dict(
@@ -82,10 +90,7 @@ def get(ctx):
 
             self.write(ret)
 
-    return FormGetHandler
 
-def post(ctx):
-    class FormPostHandler(CorsHandler):
         # proxy bid submissions
         def post(self):
             # todo: log POST / validation error
@@ -112,4 +117,4 @@ def post(ctx):
                 assert type(it['bid']) in [int], f'bid is not a integer: {it["bid"]}'
                 assert it['bid'] > 0, f'bid is negative: {it["bid"]}'
 
-    return FormPostHandler
+    return FormApiHandler
