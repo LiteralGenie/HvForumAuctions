@@ -195,12 +195,12 @@ warning_post: |-
 
   text= "\n".join(text)
   %> \
-  [color=orange][size=2]Bid Log:[/size][/color]
+  [color=orange][size=3]Bid Log:[/size][/color]
   http://auction.e33.moe/
 
   [color=transparent].[/color]
 
-  [size=2][u]Error Log[/u][/size]:
+  [size=3][u]Error Log[/u][/size]:
   ${text}
 
 
