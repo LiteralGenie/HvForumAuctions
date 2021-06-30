@@ -113,6 +113,9 @@ material_section: |-
         bid= wrap(bid, 'b')
         bid= wrap(bid, 'color', 'orange')
 
+        if bid_info['is_proxy']:
+          bid+= f" (proxy bid)"
+
 
       # concatenate aboves
       string= f"{code} {quant}x {item_name}"
@@ -120,8 +123,6 @@ material_section: |-
         string+= f" -- {bid} ({unit} per mat)"
       if comment:
         string+= f" -- {comment}"
-      if bid_info['is_proxy']:
-        string+= f" (proxy bid)"
 
       sect_lines.append(string)
 
