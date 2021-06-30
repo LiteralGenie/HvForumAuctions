@@ -8,8 +8,9 @@ async def main():
 
     async def auto_update():
         while True:
-            print('auto updating')
             await asyncio.sleep(ctx.CONFIG['auto_update_interval'])
+
+            print('auto updating')
             await ctx.do_thread_update()
 
     asyncio.create_task(auto_update())
