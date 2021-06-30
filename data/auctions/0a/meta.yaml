@@ -10,6 +10,7 @@ equips:
     category_name: Armor
     items:
       1: https://hentaiverse.org/isekai/equip/45866/1f7cadc535  # shadowdancer
+      3: http://alt.hentaiverse.org/isekai/equip/196503/b468e23b4a  # power helm
     comments: {}
 
 
@@ -26,3 +27,4 @@ materials:
   category_name: Materials
   items:
     1: [80, Energy Drink]
+    2: [100, Energy Drink]

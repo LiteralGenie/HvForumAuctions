@@ -1,12 +1,19 @@
 <template>
+    <overview/>
 </template>
 
 <script>
+import overview from "../../components/overview/_main.vue"
 
 export default {
-  name: 'App',
-  components: {
-  }
+    name: 'App',
+    components: {
+        overview
+    },
+
+    created() {
+        document.querySelector("#loading").remove()
+    }
 }
 </script>
 

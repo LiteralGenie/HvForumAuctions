@@ -17,6 +17,13 @@ module.exports = {
             title: 'Your Proxy Bids'
         },
 
+        overview: {
+            entry: 'src/pages/overview/main.js',
+            template: 'public/loading_index.html',
+            filename: 'overview.html',
+            title: 'Overview'
+        }
+
         // test: {
         //     entry: 'src/pages/test/main.js',
         //     template: 'public/index.html',

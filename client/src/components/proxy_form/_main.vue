@@ -45,13 +45,13 @@
 </template>
 
 <script>
-    import item_selection from "./proxy_form/item_selection.vue"
-    import bid_input from "./proxy_form/bid_input.vue"
-    import confirm from "./proxy_form/confirm.vue"
+    import item_selection from "./item_selection.vue"
+    import bid_input from "./bid_input.vue"
+    import confirm from "./confirm.vue"
     import advance_bar from "./advance_bar.vue"
     import status_bar from "./status_bar.vue"
     import { computed } from "vue"
-    import { int_to_price } from "../utils/misc_utils.js"
+    import { int_to_price } from "../../utils/misc_utils.js"
 
     
     export default {

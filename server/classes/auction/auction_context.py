@@ -89,12 +89,12 @@ class AuctionContext:
                 # sort
                 bid_log.sort(key=lambda x: (x['max'], -1*x['time']),
                              reverse=True)
-                max_bid= bid_log[0]
+                max_bid= bid_log[0].copy()
 
                 # get runner-up in case highest bid is proxy
                 try:
                     second_max= next(x for x in bid_log
-                                     if x['user'] != max_bid['user'])
+                                     if x['user'] != max_bid['user'] or not x['is_proxy'])
                     second_max= second_max['max']
                 except StopIteration:
                     second_max= 0

@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import proxy_form from "../../components/proxy_form.vue"
+import proxy_form from "../../components/proxy_form/_main.vue"
 
 export default {
     name: 'App',

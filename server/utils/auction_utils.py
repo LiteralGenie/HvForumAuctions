@@ -72,7 +72,7 @@ def parse_forum_bid(text):
     regex=  "(?:\[|\s)*" # leading bracket -->  [
     regex+= "([a-z]+)(?:\s|_)*(\d+)" # item code -->  item00
     regex+= "(?:\]|\s)+" # closing bracket -->  ]
-    regex+= "(\d+\.?\d*)(b|m|k|c)?" # bid  -->  50k
+    regex+= "(\d+\.?\d*)\s+(b|m|k|c)?" # bid  -->  50k
 
     matches= re.findall(regex, text, flags=re.IGNORECASE)
 
@@ -235,3 +235,14 @@ def rand_string(invalid, n=7, alphabet=_alphabet):
     while (ret in invalid) or (ret is None):
         ret= "".join(random.choice(alphabet) for i in range(n))
     return ret
+
+def get_equip_info(cat, code, meta, equips):
+    from classes import EquipScraper
+
+    for dct in meta['equips']:
+        if dct['abbreviation'] == cat:
+            link= dct['items'][code]
+            eid= EquipScraper.extract_id_key(link)[0]
+            name= equips[eid]['name']
+
+            return dict(name=name, link=link)

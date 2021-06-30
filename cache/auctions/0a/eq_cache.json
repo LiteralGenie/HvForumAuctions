@@ -142,5 +142,60 @@
       "Endurance": 35.29411764705883,
       "Agility": 9.708737864077719
     }
+  },
+  "196503": {
+    "name": "Magnificent Power Helmet of Protection",
+    "alt_name": null,
+    "stats": {
+      "Attack Damage": 15.8,
+      "Attack Accuracy": 5.16,
+      "Attack Crit Chance": 1.04,
+      "Attack Crit Damage": 1.15,
+      "Physical Mitigation": 10.0,
+      "Magical Mitigation": 5.59,
+      "Burden": 11.9,
+      "Interference": 19.81,
+      "Crushing MIT": 4.42,
+      "Slashing MIT": 6.47,
+      "Piercing MIT": 7.08,
+      "Strength": 5.43,
+      "Dexterity": 4.86
+    },
+    "base_stats": {
+      "Attack Damage": 15.8,
+      "Attack Accuracy": 5.16,
+      "Attack Crit Chance": 1.04,
+      "Attack Crit Damage": 1.15,
+      "Physical Mitigation": 10.0,
+      "Magical Mitigation": 5.59,
+      "Burden": 11.9,
+      "Interference": 19.81,
+      "Crushing MIT": 4.42,
+      "Slashing MIT": 6.47,
+      "Piercing MIT": 7.08,
+      "Strength": 5.43,
+      "Dexterity": 4.86
+    },
+    "forging": {},
+    "enchants": {},
+    "tradeable": true,
+    "soulbound": false,
+    "level": 260,
+    "owner": "lololo16",
+    "percentiles": {
+      "Attack Damage": 22.75862068965519,
+      "Attack Accuracy": 10.000000000000025,
+      "Attack Crit Chance": -62.499999999999964,
+      "Attack Crit Damage": -50.0,
+      "Physical Mitigation": -17.171717171717162,
+      "Magical Mitigation": 2.8985507246376216,
+      "Burden": 90.90909090909098,
+      "Interference": 150.0,
+      "Crushing MIT": 23.076923076923077,
+      "Slashing MIT": -56.97674418604652,
+      "Piercing MIT": 29.761904761904766,
+      "Strength": -53.70370370370371,
+      "Dexterity": -45.09803921568629
+    }
   }
 }
