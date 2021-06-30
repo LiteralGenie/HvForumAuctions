@@ -1,7 +1,7 @@
 <template>
     <div>
         <div id="summary">
-            <div id="title"><a href="htts://google.com">Genie's Bottle #4</a></div>
+            <div id="title"><a :href="ctx.auction_link">Genie's Bottle #4</a></div>
             <span><b>Last Update:</b> 52s ago</span>
             <br/><span><b>Auction Start:</b> {{start_time}}</span>
         </div>
