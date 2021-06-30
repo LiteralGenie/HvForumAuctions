@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div id="root">
         <div id="summary">
             <div id="title"><a :href="ctx.auction_link">Genie's Bottle #4</a></div>
             <span><b>Last Update:</b> 52s ago</span>
@@ -20,9 +20,7 @@
                 :item="ctx.items[i]"/>
             </tbody>
         </table>
-
-    <img :src="timer_url">
-
+        <img :src="timer_url">
     </div>
 </template>
 
@@ -52,7 +50,10 @@
         },
 
         computed: {
-            timer_url() { return process.env.VUE_APP_SERVER_URL + "/timer" },
+            timer_url() { 
+                return "https://auction.e33.moe/timer#.png";
+                return process.env.VUE_APP_SERVER_URL + "/timer" 
+            },
             start_time() {
                 let month_list= ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
                 
@@ -78,10 +79,19 @@
 
 
 <style scoped>
+    #root {
+        display: grid;
+    }
+
     #summary {
         text-align: left;
         line-height: 20px;
-        margin-bottom: 30px;
+        margin-bottom: 20px;
+    }
+
+    img {
+        align-self: left;
+        margin-top: 30px;
     }
 
     #title {
@@ -104,9 +114,5 @@
         padding: 10px;
         border-bottom: 1px solid #000;
         background-color: rgb(220,220,220)
-    }
-
-    img {
-        margin-top: 50px;
     }
 </style>
