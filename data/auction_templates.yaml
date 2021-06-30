@@ -198,6 +198,8 @@ warning_post: |-
   [color=orange][size=2]Bid Log:[/size][/color]
   http://auction.e33.moe/
 
+  [color=transparent].[/color]
+
   [size=2][u]Error Log[/u][/size]:
   ${text}
 
