@@ -269,12 +269,12 @@ class AuctionContext:
         tmp= payload_template.copy()
         tmp['Post']= cln(render(self.TEMPLATES['main_post'], max_bids=max_bids, **self.__dict__))
         tmp['p']= self.META['main_post_id']
-        # resp= await self.session.post('https://forums.e-hentai.org/index.php', data=tmp)
-        # assert resp.status == 200
+        resp= await self.session.post('https://forums.e-hentai.org/index.php', data=tmp)
+        assert resp.status == 200
 
         # edit post with warning log
         tmp= payload_template.copy()
         tmp['Post']= cln(render(self.TEMPLATES['warning_post'], max_bids=max_bids, **self.__dict__))
         tmp['p']= self.META['warning_post_id']
-        # resp= await self.session.post('https://forums.e-hentai.org/index.php', data=tmp)
-        # assert resp.status == 200
+        resp= await self.session.post('https://forums.e-hentai.org/index.php', data=tmp)
+        assert resp.status == 200
