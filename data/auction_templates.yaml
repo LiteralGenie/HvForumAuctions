@@ -56,7 +56,7 @@ equip_section: |-
         user= f"{tmp['user']}"
         bid= f"[color=orange][b]{user} {current}[/b][/color]"
 
-        if bid_info['is_proxy']:
+        if tmp['is_proxy']:
           bid+= f" (proxy bid)"
 
 
