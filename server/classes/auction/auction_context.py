@@ -2,7 +2,7 @@ from utils.scraper_utils import get_session, do_hv_login, do_forum_login
 from utils.config_utils import load_config
 from utils.auction_utils import get_new_posts, parse_proxy_code, parse_forum_bid, update_bid_cache, rand_string, rand_phrase
 from utils.template_utils import render
-import utils, time, re, json
+import utils, time, re, json, copy
 
 # @todo: redo context -- more aggregated instead of separate META / EQUIP_DATA, etc -- its awk to repeatedly extract key to access eq data
 
@@ -86,10 +86,27 @@ class AuctionContext:
 
             # loop bids and get max --- assumed they're ordered chronologically
             for item_code,bid_log in item_lst.items():
+                bid_log= copy.deepcopy(bid_log)
+
+                # remove bids that don't satisfy the min increment
+                prev_bid=0
+                while True:
+                    for i,x in enumerate(bid_log):
+                        if x['max'] < prev_bid + min_inc:
+                            bad= i
+                            break
+                    else:
+                        break
+
+                    del bid_log[i]
+
+                if not bid_log:
+                    continue
+
                 # sort
                 bid_log.sort(key=lambda x: (x['max'], -1*x['time']),
                              reverse=True)
-                max_bid= bid_log[0].copy()
+                max_bid= bid_log[0]
 
                 # get runner-up in case highest bid is proxy
                 try:
