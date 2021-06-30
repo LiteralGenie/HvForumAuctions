@@ -113,6 +113,7 @@ material_section: |-
         bid= wrap(bid, 'b')
         bid= wrap(bid, 'color', 'orange')
 
+        print(bid_info)
         if bid_info['is_proxy']:
           bid+= f" (proxy bid)"
 
