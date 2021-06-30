@@ -186,6 +186,8 @@ warning_post: |-
       reason= f"{x['item_type']} is an invalid category"
     elif x['fail_code'] == '2':
       reason= f"{x['item_code']} is an invalid item number"
+    elif x['fail_code'] == '3':
+      reason= f"insufficient bid increment"
     else:
       reason= "[unknown reason]"
 

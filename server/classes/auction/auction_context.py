@@ -92,23 +92,19 @@ class AuctionContext:
                 max_bid= bid_log[0].copy()
 
                 # get runner-up in case highest bid is proxy
-                while True:
-                    try:
-                        tmp= (x for x in bid_log
-                              if x['user'] != max_bid['user'] or not x['is_proxy'])
-                        second_max= next(tmp)
+                try:
+                    tmp= (x for x in bid_log
+                          if x['user'] != max_bid['user'] or not x['is_proxy'])
+                    second_max= next(tmp)
 
-                        if second_max['user'] == max_bid['user']:
-                            next_bid= second_max['max']
-                        elif max_bid['max'] >= second_max['max'] + min_inc:
-                            next_bid= second_max['max'] + min_inc
-                        else:
-                            continue
+                    if second_max['user'] == max_bid['user']:
+                        next_bid= second_max['max']
+                    else:
+                        next_bid= second_max['max'] + min_inc
 
-                        next_bid= max(next_bid, 0)
-                    except StopIteration:
-                        next_bid= 0
-                        break
+                    next_bid= max(next_bid, 0)
+                except StopIteration:
+                    next_bid= 0
 
                 # get bid value to display
                 # @todo: warning for insufficient bid increment
