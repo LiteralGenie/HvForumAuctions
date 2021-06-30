@@ -72,7 +72,7 @@ def parse_forum_bid(text):
     regex=  "(?:\[|\s)*" # leading bracket -->  [
     regex+= "([a-z]+)(?:\s|_)*(\d+)" # item code -->  item00
     regex+= "(?:\]|\s)+" # closing bracket -->  ]
-    regex+= "(\d+\.?\d*)\s+(b|m|k|c)?" # bid  -->  50k
+    regex+= "(\d+\.?\d*)\s*(b|m|k|c)?" # bid  -->  50k
 
     matches= re.findall(regex, text, flags=re.IGNORECASE)
 
