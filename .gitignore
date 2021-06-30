@@ -4,5 +4,5 @@
 /.idea/
 /client/src/pages/test/
 /data/timer_backgrounds/*
-/cache/auctions/*/*.json
+/cache/auctions/**/*.json
 !/cache/auctions/0a/*.json
