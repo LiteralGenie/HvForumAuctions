@@ -187,7 +187,7 @@ def parse_post_time(text, page_time):
 
     post_time= _parse_post_time(text, page_time)
     diff= (page_time - post_time).total_seconds()
-    assert diff > -10
+    assert diff > -10, diff
     diff= max(diff,0)
 
     return (time.time() - diff)
