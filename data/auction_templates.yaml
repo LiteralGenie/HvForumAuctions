@@ -120,6 +120,8 @@ material_section: |-
         string+= f" -- {bid} ({unit} per mat)"
       if comment:
         string+= f" -- {comment}"
+      if bid_info['is_proxy']:
+        string+= f" (proxy bid)"
 
       sect_lines.append(string)
 
