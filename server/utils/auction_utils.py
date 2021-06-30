@@ -187,7 +187,7 @@ def parse_post_time(text, page_time):
 
     post_time= _parse_post_time(text, page_time)
     diff= (page_time - post_time).total_seconds()
-    assert diff > -10, diff
+    assert diff > -10, f"{diff=} {post_time=} {page_time=}"
     diff= max(diff,0)
 
     return (time.time() - diff)
@@ -219,7 +219,7 @@ def _parse_post_time(text, page_time):
         [hour,min] = [int(x) for x in re.fullmatch("Today, (\d+):(\d+)", text).groups()]
         return page_time.replace(hour=hour, minute=min)
     elif "Yesterday" in text:
-        day= int(page_time.day)
+        day= -1 + int(page_time.day)
         [hour,min] = [int(x) for x in re.fullmatch("Yesterday, (\d+):(\d+)", text).groups()]
         return page_time.replace(day=day, hour=hour, minute=min)
     else:
