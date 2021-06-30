@@ -8,7 +8,6 @@ def get(ctx):
     # type: (AuctionContext) -> type
     class OverviewGetHandler(CorsHandler):
         def get(self):
-            print('here')
             return self.render(utils.PAGES_DIR + "overview.html")
 
     return OverviewGetHandler
@@ -18,7 +17,6 @@ def api_get(ctx):
     # type: (AuctionContext) -> type
     class ApiGetHandler(CorsHandler):
         def get(self):
-            print('here2')
             ret= dict()
             max_bids= ctx.get_max_bids()
 
