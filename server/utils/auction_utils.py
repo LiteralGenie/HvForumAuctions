@@ -22,7 +22,7 @@ def int_to_price(x):
 
 
 def update_bid_cache(bid, ctx):
-    class Error(Exception):
+    class UpdateError(Exception):
         pass
 
     def update():
@@ -37,22 +37,39 @@ def update_bid_cache(bid, ctx):
                 cat= ctx.META['materials']['abbreviation']
                 lst= ctx.META['materials']['items']
             else:
-                raise Error(1) # bad category
+                raise UpdateError(1) # bad category
 
         # get id
         for item_id,item in lst.items():
             code= bid['item_code']
-            if int(item_id) == int(code):
-                ctx.BIDS['items'].setdefault(cat, {}).\
-                    setdefault(str(item_id), []).\
-                    append(bid)
+            if str(item_id) == str(code):
+                ret= dict(cat=str(cat), id=str(item_id))
                 break
         else:
-            raise Error(2) # bad item number
+            raise UpdateError(2) # bad item number
+
+        # check min increment
+        min_inc= ctx.CONFIG['min_bid_increment']
+        if bid['max'] < min_inc:
+            raise UpdateError(3)
+
+        max_bids= ctx.get_max_bids()
+        if (cat in max_bids) and (item_id in max_bids[cat]):
+            mx= max_bids[cat][item_id]
+            if bid['max'] < mx['max'] + min_inc:
+                raise UpdateError(3)
+
+        return ret
+
 
     try:
-        update()
-    except Error as e:
+        result= update()
+        cat= result['cat']
+        item_id= result['id']
+
+        ctx.BIDS['items'].setdefault(cat, {}).setdefault(item_id, [])
+        ctx.BIDS['items'][cat][item_id].append(bid)
+    except UpdateError as e:
         bid['fail_code']= str(e)
         ctx.BIDS['warnings'].append(bid)
 

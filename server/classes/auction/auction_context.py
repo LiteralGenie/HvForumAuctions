@@ -88,21 +88,6 @@ class AuctionContext:
             for item_code,bid_log in item_lst.items():
                 bid_log= copy.deepcopy(bid_log)
 
-                # remove bids that don't satisfy the min increment
-                prev_bid=0
-                while True:
-                    for i,x in enumerate(bid_log):
-                        if x['max'] < prev_bid + min_inc:
-                            bad= i
-                            break
-                    else:
-                        break
-
-                    del bid_log[i]
-
-                if not bid_log:
-                    continue
-
                 # sort
                 bid_log.sort(key=lambda x: (x['max'], -1*x['time']),
                              reverse=True)
