@@ -56,7 +56,7 @@ def update_bid_cache(bid, ctx):
         max_bids= ctx.get_max_bids()
         if (cat in max_bids) and (item_id in max_bids[cat]):
             mx= max_bids[cat][item_id]
-            if bid['max'] < mx['max'] + min_inc:
+            if bid['max'] < mx['visible_bid'] + min_inc:
                 raise UpdateError(3)
 
         return ret
