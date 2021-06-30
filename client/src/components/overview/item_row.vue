@@ -94,7 +94,7 @@
                     }
                 }
 
-                return "???"
+                return "(none)"
             },
 
             has_no_bids() {

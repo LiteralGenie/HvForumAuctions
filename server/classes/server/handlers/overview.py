@@ -24,6 +24,7 @@ def api_get(ctx):
             ret['auction_link']= ctx.thread_link
             ret['start']= ctx.META.get('start', ctx.META['end'] - 3*86400)
             ret['end']= ctx.META['end']
+            ret['last_update']= ctx.last_check
 
             ret['items']= []
             lst= [*ctx.META['equips'], ctx.META['materials']]

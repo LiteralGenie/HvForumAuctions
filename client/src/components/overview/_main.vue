@@ -2,8 +2,9 @@
     <div id="root">
         <div id="summary">
             <div id="title"><a :href="ctx.auction_link">Genie's Bottle #4</a></div>
-            <span><b>Last Update:</b> 52s ago</span>
-            <br/><span><b>Auction Start:</b> {{start_time}}</span>
+            <span><b>Last Update:</b> {{last_update}}</span>
+            <br/><span><b>Auction Start:</b> {{fmt_time(ctx.start)}}</span>
+            <br/><span><b>Auction End:</b> {{fmt_time(ctx.end)}}</span>
         </div>
         <table>
             <thead>
@@ -29,11 +30,17 @@
 
     export default {
         data() { return {
-            ctx: null
+            ctx: null,
+
+            last_update: 0
         }},
 
         created() {
             this.ctx= this.init_ctx()
+
+            setInterval(() => {
+                this.refresh_last_update()
+            }, 400);
         },
 
         methods: {
@@ -46,6 +53,34 @@
             
             from_start(t) {
                 return t - this.ctx.start
+            },
+
+            fmt_time(t) {
+                let pad= (x => String(x).padStart(2,0))
+                let month_list= ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
+                
+                let d= new Date(t*1000)
+                let day= d.getDate()
+                let month= month_list[d.getMonth()]
+                let hour= d.getHours()
+                let min= d.getMinutes()
+
+                return `${pad(month)}-${pad(day)}, ${pad(hour)}:${pad(min)} UTC`
+            },
+
+            refresh_last_update() {
+                let pad= (x => String(x).padStart(2,0))
+                let total_seconds= Math.round(Date.now()/1000 - this.ctx.last_update)
+
+                let minutes= Math.floor(total_seconds / 60)
+                let seconds= total_seconds % 60
+
+                let ret= []
+                if(minutes) ret.push(`${minutes}m`)
+                ret.push(`${seconds}s`)
+                ret.push('ago')
+
+                this.last_update= ret.join(' ')
             }
         },
 
@@ -54,17 +89,6 @@
                 return "https://auction.e33.moe/timer#.png";
                 return process.env.VUE_APP_SERVER_URL + "/timer" 
             },
-            start_time() {
-                let month_list= ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
-                
-                let d= new Date(this.ctx.start*1000)
-                let day= d.getDate()
-                let month= month_list[d.getMonth()]
-                let hour= d.getHours()
-                let min= d.getMinutes()
-
-                return `${month}-${day}, ${hour}:${min} UTC`
-            }
         },
 
         provide() { return {

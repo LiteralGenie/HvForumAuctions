@@ -204,7 +204,7 @@ warning_post: |-
   text= "\n".join(text)
   %> \
   [color=orange][size=3]Bid Log:[/size][/color]
-  http://auction.e33.moe/
+  https://auction.e33.moe/
 
   [color=transparent].[/color]
 

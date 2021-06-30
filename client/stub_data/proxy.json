@@ -109,8 +109,9 @@
     "overview": {
         "auction_name": "Genie's Bottle #4",
         "auction_link": "https://google.com",
-        "last_check": 1625008299,
+        "last_update": 1625008299,
         "start": 1625008299,
+        "end": 1625208299,
         "items": [
             {
                 "cat": "Arm", 
