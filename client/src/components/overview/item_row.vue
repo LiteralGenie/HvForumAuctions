@@ -166,5 +166,6 @@
     
     .winner {
         background-color: rgb(232, 255, 214);
+        font-weight: bold;
     }
 </style>
