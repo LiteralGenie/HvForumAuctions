@@ -95,15 +95,20 @@ class AuctionContext:
                 try:
                     second_max= next(x for x in bid_log
                                      if x['user'] != max_bid['user'] or not x['is_proxy'])
-                    second_max= second_max['max']
+
+                    if second_max['user'] == max_bid['user']:
+                        next_bid= second_max['max']
+                    else:
+                        next_bid= second_max['max'] + min_inc
+
+                    next_bid= max(next_bid, 0)
                 except StopIteration:
-                    second_max= 0
-                second_max= max(0, second_max)
+                    next_bid= 0
 
                 # get bid value to display
                 # @todo: warning for insufficient bid increment
                 if max_bid['is_proxy']:
-                    max_bid['visible_bid']= min(second_max+min_inc, max_bid['max'])
+                    max_bid['visible_bid']= min(next_bid, max_bid['max'])
                 else:
                     max_bid['visible_bid']= max_bid['max']
 

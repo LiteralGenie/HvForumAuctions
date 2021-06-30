@@ -1,0 +1,110 @@
+{
+  "bids": [
+    {
+      "code": "UniqueOblongNight",
+      "key": "7gjy944",
+      "user": "lichtenlade",
+      "items": [
+        {
+          "cat": "Wep",
+          "code": "3",
+          "bid": 300000
+        }
+      ],
+      "start": 1624891527.3485346,
+      "end": 1624892427.3485346,
+      "confirmed": true
+    },
+    {
+      "code": "SourMealyRelief",
+      "key": "1u40t96",
+      "user": "test",
+      "items": [
+        {
+          "cat": "Wep",
+          "code": "3",
+          "bid": 200000
+        }
+      ],
+      "start": 1624894050.4971058,
+      "end": 1624894950.4971058,
+      "confirmed": false
+    },
+    {
+      "code": "StaleTheseHighlight",
+      "key": "6ryxm7s",
+      "user": "KamuiSeph",
+      "items": [
+        {
+          "cat": "Wep",
+          "code": "3",
+          "bid": 2000000
+        }
+      ],
+      "start": 1625005671.320803,
+      "end": 1625006571.320803,
+      "confirmed": true
+    },
+    {
+      "code": "LostMoralMode",
+      "key": "6zpo3ul",
+      "user": "null2null",
+      "items": [
+        {
+          "cat": "Wep",
+          "code": "3",
+          "bid": 800000
+        }
+      ],
+      "start": 1625008192.5599883,
+      "end": 1625009092.5599883,
+      "confirmed": true
+    },
+    {
+      "code": "GrownUnselfishSpiritual",
+      "key": "jzesl18",
+      "user": "null2null",
+      "items": [
+        {
+          "cat": "Wep",
+          "code": "3",
+          "bid": 1100000
+        }
+      ],
+      "start": 1625008885.8383977,
+      "end": 1625009785.8383977,
+      "confirmed": true
+    },
+    {
+      "code": "TerribleTriangularShopping",
+      "key": "4zedqzm",
+      "user": "Shank",
+      "items": [
+        {
+          "cat": "Wep",
+          "code": "1",
+          "bid": 500000
+        }
+      ],
+      "start": 1625010111.8755636,
+      "end": 1625011011.8755636,
+      "confirmed": true
+    }
+  ],
+  "codes": [
+    "UniqueOblongNight",
+    "SourMealyRelief",
+    "StaleTheseHighlight",
+    "LostMoralMode",
+    "GrownUnselfishSpiritual",
+    "TerribleTriangularShopping"
+  ],
+  "keys": [
+    "7gjy944",
+    "1u40t96",
+    "6ryxm7s",
+    "6zpo3ul",
+    "jzesl18",
+    "4zedqzm"
+  ]
+}

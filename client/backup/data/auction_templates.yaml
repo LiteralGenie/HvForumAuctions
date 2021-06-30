@@ -1,0 +1,234 @@
+header: |-
+  <%
+  from utils.format_utils import color, wrap
+  green= lambda x: color(x, '00aa00')
+  red= lambda x: color(x, 'ff0000')
+  %> \
+  [url=https://auction.e33.moe/update][img]https://auction.e33.moe/timer#.png[/img][/url]
+  [b]Special thanks to @OnceForAll for the original [url=https://github.com/SukkaW/pure-svg-countdown]timer design[/url][/b]
+
+  [color=transparent].[/color]
+
+  [size=3][u]Rules[/u][/size]:[list]
+  [*] To place a bid, write the item code + price. For example, ${green('[Shld5] 5k')} or ${green('Shld_5 3.2m')}.
+  [*] [color=#ffa500]To place a proxy bid, follow the instructions on [url=https://auction.e33.moe/proxy/form]this form[/url]. For a more detailed guide, click [url=https://forums.e-hentai.org/index.php?s=&showtopic=246160&view=findpost&p=5881306]here[/url].[/color]
+  [*] After placing a bid / proxy bid, you can click the timer image above to update this thread.
+  [*] Minimum bid increment is ${red('25k (real credits, not ISK)')}.
+  [*] [b]Bids can not be cancelled![/b] If the thread has not been updated, you can still edit your post, but otherwise, please send me a [b]forum PM[/b] to edit your bid.
+  [/list]
+
+# kwargs: CATEGORY, MAX_BIDS, EQUIPS
+equip_section: |-
+  <%
+    from utils.format_utils import get_visible_stats, format_stats, highlight_name, wrap
+    from utils.auction_utils import int_to_price
+    from classes import EquipScraper
+
+
+    sect= CATEGORY['category_name']
+    header= wrap(wrap(sect, 'size', 3), 'u')
+    sect_lines= []
+
+    # loop equips
+    for num,link in CATEGORY['items'].items():
+      # ...
+      eid= EquipScraper.extract_id_key(link)[0]
+      stats= EQUIPS[eid]
+      code= f"[{CATEGORY['abbreviation']}_{num}]"
+      level= f"{stats['level']}"
+
+      name= highlight_name(stats['name'])
+      linked_name= wrap(name, 'url', link)
+
+      tmp= get_visible_stats(link, EQUIPS)
+      tmp= format_stats(tmp)
+      visible_stats= ", ".join(tmp)
+      comment= CATEGORY.get('comments',{}).get(num, "")
+
+
+      # bids
+      if str(num) not in MAX_BIDS.get(CATEGORY['abbreviation'], {}):
+        bid= "" # no bidder
+      else:
+        tmp= MAX_BIDS[CATEGORY['abbreviation']][str(num)]
+        max= int_to_price(tmp['max'])
+        current= int_to_price(tmp['visible_bid'])
+        user= f"{tmp['user']}"
+        bid= f"[color=orange][b]{user} {current}[/b][/color]"
+
+
+      # concatenate the aboves
+      string= f"{code} {linked_name} (Lv{level})"
+      if visible_stats:
+          string+= f" -- {visible_stats}"
+      if bid:
+        string+= f" -- {bid}"
+      if comment:
+        string+= f" -- {comment}"
+
+      sect_lines.append(string)
+
+    sect_lines= "\n".join(sect_lines)
+
+    ret= header + "\n" + sect_lines
+  %> \
+  ${ret}
+
+# kwargs: CATEGORY, MAX_BIDS
+material_section: |-
+  <%
+    from utils.format_utils import wrap
+    from utils.auction_utils import int_to_price
+
+
+    sect= CATEGORY['category_name']
+    sect= wrap(wrap(sect, 'size', 3), 'u')
+    sect_lines= []
+
+    # loop items
+    for num,item in CATEGORY['items'].items():
+      # ...
+      [quant,item_name]= item
+      quant= int(quant)
+      code= f"[{CATEGORY['abbreviation']}_{num}]"
+      abbrv= CATEGORY['abbreviation']
+      comment= CATEGORY.get('comments',{}).get(num, "")
+
+      # gets bids
+      if str(num) not in MAX_BIDS.get(abbrv, {}):
+        bid= "" # no bidder
+      else:
+        bid_info= MAX_BIDS[abbrv][str(num)]
+
+        user= f"{bid_info['user']}"
+        current= int_to_price(bid_info['visible_bid'])
+        max= int_to_price(bid_info['max'])
+
+        unit= bid_info['visible_bid'] / quant
+        unit= int_to_price(unit)
+        unit= f'{float(unit[:-1]):.1f}{unit[-1]}'
+
+        bid= f"[color=orange][b]{num} {current}[/b][/color]"
+        bid= f"{user} {current}"
+        bid= wrap(bid, 'b')
+        bid= wrap(bid, 'color', 'orange')
+
+
+      # concatenate aboves
+      string= f"{code} {quant}x {item_name}"
+      if bid:
+        string+= f" -- {bid} ({unit} per mat)"
+      if comment:
+        string+= f" -- {comment}"
+
+      sect_lines.append(string)
+
+    sect_lines= "\n".join(sect_lines)
+    ret= sect + "\n" + sect_lines
+  %> \
+  ${ret}
+
+
+main_post: |-
+  <%
+    from utils.template_utils import render
+
+    # inits
+    sections= []
+
+    # equips
+    for cat in META['equips']:
+      sect= render(TEMPLATES['equip_section'],
+                   CATEGORY=cat,
+                   MAX_BIDS=MAX_BIDS,
+                   EQUIPS=EQUIPS)
+      sections.append(sect)
+
+    # materials
+    cat= META['materials']
+    sect= render(TEMPLATES['material_section'],
+                 CATEGORY=cat,
+                 MAX_BIDS=MAX_BIDS)
+    sections.append(sect)
+
+    ret= "\n\n\n".join(sections)
+  %> \
+  ${render(TEMPLATES['header'])}
+
+  [color=transparent].[/color]
+
+  ${ret}
+
+
+warning_post: |-
+  <%
+  from utils.auction_utils import int_to_price
+
+  text= []
+
+  for i,x in enumerate(BIDS['warnings']):
+    line= ""
+    name= x['user']
+
+    link= None
+    if not x['is_proxy']:
+      link= f"https://forums.e-hentai.org/index.php?showtopic={META['thread_id']}&view=findpost&p={x['source']['pid']}"
+
+    bid= int_to_price(x['max'])
+
+    if x['fail_code'] == '1':
+      reason= f"{x['item_type']} is an invalid category"
+    elif x['fail_code'] == '2':
+      reason= f"{x['item_code']} is an invalid item number"
+    else:
+      reason= "[unknown reason]"
+
+    if link and x['source'].get('index'):
+      line+= f"[url={link}]#{x['source']['index']}[/url] "
+    line+= f"{name} bid "
+    if bid:
+      line+= f"{bid} "
+    line+= f"on [{x['item_type']}{x['item_code']}] but {reason}."
+
+
+    text.append(line)
+
+  text= "\n".join(text)
+  %> \
+  [size=2][u]Error Log[/u][/size]:
+  ${text}
+
+
+##########
+
+
+debug: |-
+  <head><meta charset="utf-8" /></head>
+  <%
+    import json, utils
+    from utils.template_utils import render
+    TEMPLATES= utils.load_yaml(utils.AUCTION_TEMPLATES)
+  %>
+
+  ${render(TEMPLATES['header'])} <br><br>
+  % for eq in EQUIPS.values():
+    ${f"eq['name'] (eq['level'])"} <br>
+  % endfor
+
+  <%
+    tmp= lambda x: json.dumps(x,indent=2,ensure_ascii=False)
+    tmp2= lambda x,y: f"<br><hr>{x}<br><pre>{tmp(y)}</pre>"
+  %>
+  <br><br>
+
+  ${tmp2('meta', META)}
+  ${tmp2('bids', BIDS)}
+  ${tmp2('max_bids', MAX_BIDS)}
+  ${tmp2('mails', SEEN_MMS)}
+  ${tmp2('posts', SEEN_POSTS)}
+  ${tmp2('equips', EQUIPS)}
+
+
+
+
+##########

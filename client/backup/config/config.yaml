@@ -1,0 +1,14 @@
+forum_name: frotag
+forum_pass: A1S2d3f4
+post_key: 30c499c2b663e4cacd74fe0d1a39d893    # for POSTing thread replies (retrieved from html)
+
+current_auction: "4"   # should match .../data/auctions/CURRENT_AUCTION.yaml
+min_bid_increment: 25000
+proxy_ttl: 900
+
+### Should probably leave these alone:
+port: 8113
+
+ignore_first_n: 3 # number of reserved posts
+update_cooldown: 70 # 60
+forum_number: 90

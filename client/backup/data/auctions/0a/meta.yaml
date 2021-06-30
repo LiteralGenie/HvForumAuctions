@@ -1,0 +1,28 @@
+number: 0a
+end: 1624737457
+
+thread_id: 249379
+main_post_id: 5934497
+warning_post_id: 5934498
+
+equips:
+  - abbreviation: Arm
+    category_name: Armor
+    items:
+      1: https://hentaiverse.org/isekai/equip/45866/1f7cadc535  # shadowdancer
+    comments: {}
+
+
+  - abbreviation: Wep
+    category_name: Weapons
+    items:
+      1: https://hentaiverse.org/isekai/equip/38628/98fdf07787  # eth short
+      3: https://hentaiverse.org/isekai/equip/38874/010ad9535a # force shield
+    comments: {}
+
+
+materials:
+  abbreviation: Mat
+  category_name: Materials
+  items:
+    1: [80, Energy Drink]
