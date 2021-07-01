@@ -111,7 +111,7 @@ class AuctionContext:
                 # get bid value to display
                 # @todo: warning for insufficient bid increment
                 if max_bid['is_proxy']:
-                    max_bid['visible_bid']= min(next_bid, max_bid['max'])
+                    max_bid['visible_bid']= min(next_bid + min_inc, max_bid['max'])
                 else:
                     max_bid['visible_bid']= max_bid['max']
 
