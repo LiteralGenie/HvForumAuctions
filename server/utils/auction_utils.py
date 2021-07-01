@@ -262,4 +262,4 @@ def get_equip_info(cat, code, meta, equips):
             eid= EquipScraper.extract_id_key(link)[0]
             name= equips[eid]['name']
 
-            return dict(name=name, link=link)
+            return dict(name=name, link=link, eid=eid)

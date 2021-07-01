@@ -58,6 +58,7 @@ preview:
     legendary: *red
     shade: *red
     fleet: *red
+    reinforced: *red
     force: *red
     phase: *red
     power: *red
