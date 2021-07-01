@@ -1,6 +1,7 @@
 <template>
         <!-- visible row -->
-        <tr class="item_row" @click="item_click">
+        <tr class="item_row" @click="item_click"
+        :class="{hovered}" @mouseover="hovered=1" @mouseout="hovered=0">
             <td>
                 <span class="arrow" v-if="!expanded">+</span>
                 <span class="arrow" v-if="expanded">-</span>
@@ -49,6 +50,7 @@
         data() { return {
             expanded: false,
             sorted: [],
+            hovered: false,
         }},
 
         created() {
@@ -81,7 +83,7 @@
             item_name() {
                 let ret= `${this.item.name}`
                 if(this.item.link) {
-                    ret= `<a href=${this.item.link}>${ret}</a>`
+                    ret= `<a target="_blank" href=${this.item.link}>${ret}</a>`
                 }
                 return ret
             },
@@ -134,6 +136,12 @@
         border-bottom: 1px solid black;
         border-top: 1px solid #000;
         background-color: rgb(240,240,240);
+
+        cursor: pointer;
+    }
+
+    .hovered {
+        background-color: rgb(220,220,220);
     }
 
     .expanding_td {

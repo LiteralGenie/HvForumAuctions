@@ -3,7 +3,6 @@
 adjectives:
   - peerless
   - legendary
-  - magnificent
   - exquisite
   - superior
   
@@ -11,64 +10,48 @@ adjectives:
   - fiery
   - arctic
   - shocking
-  - tempestuous
   - demonic
   - hallowed
 
   - abelian
   - additive
   - algebraic
-  - alternating
   - ascending
   - auto
   - axiomatic
   - boolean
   - cayley
-  - commutative
   - composite
   - cyclic
-  - cyclotomic
   - decoded
   - digital
   - dihedral
   - direct
   - primitive
-  - transcedental
   - embedded
   - empty
-  - equivalent
   - euclidean
-  - generalized
   - external
   - closed
   - open
   - finite
   - fixed
   - free
-  - fundamental
-  - geometric
   - greatest
   - dicyclic
   - discrete
   - general
-  - homomorphic
   - infinite
   - integral
-  - isomorphic
   - unique
   - solvable
   - simple
   - special
   - symmetric
-  - tetrahedral
-  - hamiltonian
   - gaussian
   - ideal
-  - principal
-  - idempotent
   - inner
   - inverse
-  - isometric
   - least
   - linear
   - maximal
@@ -77,24 +60,19 @@ adjectives:
   - natural
   - nearest
   - nilpotent
-  - orthoganal
   - perfect
   - prime
   - reducible
-  - reflected
   - relative
   - scalar
   - sub
-  - translated
   - weighted
   - complex
 
-  - enchanted
   - gross
   - weird
   - sexy
   - healthy
-  - comptemtible
   - fun
   - sickly
 
@@ -113,9 +91,7 @@ adjectives:
   - zircon
   - jade
   - agile
-  - reinforced
   - mithril
-  - shielding
 
 nouns:
   - oak
@@ -124,7 +100,6 @@ nouns:
   - katalox
 
   - infusion
-  - shortsword
   - katana
   - potion
   - draught
@@ -151,7 +126,6 @@ nouns:
   - sabatons
   - greaves
   - cuirass
-  - breastplate
   - mace
   - wakizashi
 
@@ -166,14 +140,11 @@ nouns:
   - unity
   - domain
   - property
-  - primitive
   - quotient
   - range
-  - reflection
   - relation
   - class
   - prime
-  - polynomial
   - plane
   - constant
   - monic
@@ -181,13 +152,11 @@ nouns:
   - radical
   - element
   - mapping
-  - arithmetic
   - matrix
   - decoding
   - encoding
   - vector
   - line
-  - representation
   - square
   - lattice
   - kernel
@@ -206,8 +175,6 @@ nouns:
   - metric
   - conjugate
   - coset
-  - conjugation
-  - derivative
   - center
   - table
   - arc

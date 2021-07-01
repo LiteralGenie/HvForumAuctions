@@ -237,7 +237,7 @@ def rand_phrase(invalid=None):
     while (ret in invalid) or (ret is None):
         ret= [
             random.choice(_dct['adjectives']),
-            random.choice(_dct['adjectives']),
+            # random.choice(_dct['adjectives']),
             random.choice(_dct['nouns']),
         ]
         ret= "".join(x.capitalize() for x in ret)
