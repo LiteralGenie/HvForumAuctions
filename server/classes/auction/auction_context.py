@@ -104,14 +104,14 @@ class AuctionContext:
                     else:
                         next_bid= second_max['max'] + min_inc
 
-                    next_bid= max(next_bid, 0)
+                    next_bid= max(next_bid, min_inc)
                 except StopIteration:
-                    next_bid= 0
+                    next_bid= min_inc
 
                 # get bid value to display
                 # @todo: warning for insufficient bid increment
                 if max_bid['is_proxy']:
-                    max_bid['visible_bid']= min(next_bid + min_inc, max_bid['max'])
+                    max_bid['visible_bid']= min(next_bid, max_bid['max'])
                 else:
                     max_bid['visible_bid']= max_bid['max']
 
