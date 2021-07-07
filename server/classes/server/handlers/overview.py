@@ -40,7 +40,8 @@ def api_get(ctx):
                         item_info['name']= info['name']
                         item_info['link']= info['link']
                     else:
-                        item_info['name']= ctx.META['materials']['items'][code]
+                        tmp= ctx.META['materials']['items'][code]
+                        item_info['name']= f"{tmp[0]}x {tmp[1]}"
 
                     # add bids
                     item_info['bids']= []
