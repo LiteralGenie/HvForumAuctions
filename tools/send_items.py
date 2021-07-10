@@ -36,7 +36,7 @@ def get_info(item, ctx):
     ret= dict(is_mat=False)
 
     if item['item_type'] == "Mat":
-        [quant,name]= f"{ctx.META['materials']['items'][item['item_code']]}"
+        [quant,name]= ctx.META['materials']['items'][item['item_code']]
         ret['text']= f"{abbrv} {quant}x {name}"
         ret['is_mat']= True
         ret['quant']= quant
@@ -85,8 +85,8 @@ def do_isekai(item, tab, ctx):
 
     # set item
     if info['is_mat']:
-        execute(tab, f"{ITEM_SEARCH_INPUT}.value={info['name']}")
-        execute(tab, f"{ITEM_SEARCH_INPUT}.dispatchEvent(new Event('input'))")
+        execute(tab, f"{ITEM_SEARCH_INPUT}.value=\"{info['name']}\"",
+                     f"{ITEM_SEARCH_INPUT}.dispatchEvent(new Event('input'))")
 
         target_row= 'document.querySelector(".nosel.itemlist > tbody > tr:not(.hvut-none)")'
         execute(tab, f"{target_row}.querySelector('.hvut-mm-count').value= {info['quant']}",

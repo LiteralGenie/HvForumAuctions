@@ -59,6 +59,8 @@ equip_section: |-
         if tmp['is_proxy']:
           bid+= f" (proxy bid)"
 
+        if (seller := CATEGORY.get('sellers', {}).get(num)):
+          bid+= f" (seller: {seller})"
 
       # concatenate the aboves
       string= f"{code} {linked_name} (Lv{level})"
@@ -93,9 +95,12 @@ material_section: |-
       # ...
       [quant,item_name]= item
       quant= int(quant)
-      code= f"[{CATEGORY['abbreviation']}_{num}]"
+
       abbrv= CATEGORY['abbreviation']
+      code= f"[{abbrv}_{num}]"
+
       comment= CATEGORY.get('comments',{}).get(num, "")
+
 
       # gets bids
       if str(num) not in MAX_BIDS.get(abbrv, {}):
@@ -119,6 +124,8 @@ material_section: |-
         if bid_info['is_proxy']:
           bid+= f" (proxy bid)"
 
+        if (seller := CATEGORY.get('sellers', {}).get(num)):
+          bid+= f" (seller: {seller})"
 
       # concatenate aboves
       string= f"{code} {quant}x {item_name}"

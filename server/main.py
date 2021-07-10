@@ -1,6 +1,9 @@
 from classes import Server, AuctionContext
 import asyncio
 
+# @todo: move ofa credit to warning post
+# @todo: better warning messages for proxy bids and bid increment fails
+
 
 async def main():
     ctx= await AuctionContext.create()
