@@ -46,7 +46,6 @@ equip_section: |-
 
       comment= CATEGORY.get('comments',{}).get(num, "")
       seller= CATEGORY.get('sellers', {}).get(int(num))
-      print(CATEGORY.get('sellers', {}), num, f"seller: {seller}")
 
 
       # bids
@@ -104,7 +103,6 @@ material_section: |-
 
       comment= CATEGORY.get('comments',{}).get(num, "")
       seller= CATEGORY.get('sellers', {}).get(int(num))
-      print(CATEGORY.get('sellers', {}), num, f"seller: {seller}")
 
 
       # gets bids
