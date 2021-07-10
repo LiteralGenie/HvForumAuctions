@@ -43,7 +43,10 @@ equip_section: |-
       tmp= get_visible_stats(link, EQUIPS)
       tmp= format_stats(tmp)
       visible_stats= ", ".join(tmp)
+
       comment= CATEGORY.get('comments',{}).get(num, "")
+      seller= CATEGORY.get('sellers', {}).get(int(num))
+      print(CATEGORY.get('sellers', {}), num, f"seller: {seller}")
 
 
       # bids
@@ -59,11 +62,11 @@ equip_section: |-
         if tmp['is_proxy']:
           bid+= f" (proxy bid)"
 
-        if (seller := CATEGORY.get('sellers', {}).get(num)):
-          bid+= f" (seller: {seller})"
 
       # concatenate the aboves
       string= f"{code} {linked_name} (Lv{level})"
+      if seller:
+        string+= f" (seller: {seller})"
       if visible_stats:
           string+= f" -- {visible_stats}"
       if bid:
@@ -100,6 +103,8 @@ material_section: |-
       code= f"[{abbrv}_{num}]"
 
       comment= CATEGORY.get('comments',{}).get(num, "")
+      seller= CATEGORY.get('sellers', {}).get(int(num))
+      print(CATEGORY.get('sellers', {}), num, f"seller: {seller}")
 
 
       # gets bids
@@ -124,11 +129,10 @@ material_section: |-
         if bid_info['is_proxy']:
           bid+= f" (proxy bid)"
 
-        if (seller := CATEGORY.get('sellers', {}).get(num)):
-          bid+= f" (seller: {seller})"
-
       # concatenate aboves
       string= f"{code} {quant}x {item_name}"
+      if seller:
+        string+= f" (seller: {seller})"
       if bid:
         string+= f" -- {bid} ({unit} per mat)"
       if comment:
