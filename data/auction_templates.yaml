@@ -44,7 +44,7 @@ equip_section: |-
       tmp= format_stats(tmp)
       visible_stats= ", ".join(tmp)
 
-      comment= CATEGORY.get('comments',{}).get(num, "")
+      comment= CATEGORY.get('comments',{}).get(int(num), "")
       seller= CATEGORY.get('sellers', {}).get(int(num))
 
 
@@ -101,7 +101,7 @@ material_section: |-
       abbrv= CATEGORY['abbreviation']
       code= f"[{abbrv}_{num}]"
 
-      comment= CATEGORY.get('comments',{}).get(num, "")
+      comment= CATEGORY.get('comments',{}).get(int(num), "")
       seller= CATEGORY.get('sellers', {}).get(int(num))
 
 
