@@ -63,6 +63,7 @@ preview:
     phase: *red
     power: *red
     savage: *red
+    peerless: ffa500
 
   abbreviations:
     Block Chance: BLK

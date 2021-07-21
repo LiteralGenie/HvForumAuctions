@@ -290,6 +290,7 @@ async def main():
             print("\n" + str(item))
 
             inp= input("Skip? ")
+            # inp= "0"
             if inp.lower() in "1 y".split():
                 continue
 

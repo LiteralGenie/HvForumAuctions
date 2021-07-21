@@ -5,7 +5,6 @@ header: |-
   red= lambda x: color(x, 'ff0000')
   %> \
   [url=https://auction.e33.moe/update][img]https://auction.e33.moe/timer#.png[/img][/url]
-  [b]Special thanks to @OnceForAll for the original [url=https://github.com/SukkaW/pure-svg-countdown]timer design[/url][/b]
 
   [color=transparent].[/color]
 
