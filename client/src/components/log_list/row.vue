@@ -15,7 +15,7 @@
                 let months= 'Jan Feb Mar Apr May Jun Jul Aug Sep Oct Nov Dec'.split(' ')
                 let ret= ''
 
-                let d= new Date(this.log.start)
+                let d= new Date(this.log.start*1000)
 
                 let year=  pad(d.getFullYear())
                 let month= pad(months[d.getMonth()])

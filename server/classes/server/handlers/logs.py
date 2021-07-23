@@ -131,7 +131,7 @@ def list_logs(ctx):
         start= data.get('start', end - 3*86400)
 
         ret['logs'].append(dict(
-            name=ctx.META.get('name', "Genie's Bottle"),
+            name=data.get('name', "Genie's Bottle"),
             link=f"/logs?id={folder}",
             start=start,
             end=end,
