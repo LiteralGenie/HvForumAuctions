@@ -11,7 +11,7 @@ class Server(Application):
 
         # routes
         handlers.append(('/logs', logs.get(ctx)))
-        handlers.append(('/', RedirectHandler, {"url": f"/logs/{ctx.FOLDER}"}))
+        handlers.append(('/', RedirectHandler, {"url": f"/logs?id={ctx.FOLDER}"}))
         handlers.append(('/api/logs', logs.api_get(ctx)))
 
         handlers.append(('/update',           update.get_update(ctx)))
