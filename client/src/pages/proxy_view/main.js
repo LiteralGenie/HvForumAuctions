@@ -15,7 +15,7 @@ async function load_data() {
     let data= (await axios.get(target)).data
 
     if(!params.get('code')) {
-        history.replaceState(null, null, `?key=${key}code=${data.code}`)
+        history.replaceState(null, null, `?key=${key}&code=${data.code}`)
     }
     
     console.log(target, data)    
