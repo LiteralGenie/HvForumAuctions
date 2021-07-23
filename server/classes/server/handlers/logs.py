@@ -108,24 +108,20 @@ def get(current_ctx):
     return LogHandler
 
 def list_logs(ctx):
-    def folder_val(name):
-        root= os.path.basename(name)
-        return (-len(root), root)
-
     folders= glob.glob(utils.AUCTION_DIR + "*")
-    folders.sort(key=folder_val)
 
     metas= []
     for x in folders:
         file= x + "/meta.yaml"
         if os.path.exists(file):
             metas.append(file)
+    metas= [utils.load_yaml(x) for x in metas]
+    metas.sort(key=lambda x: float(x['number']))
 
     ret= dict(info_link=ctx.CONFIG['info_link'])
 
     ret['logs']= []
-    for x in metas:
-        data= utils.load_yaml(x)
+    for data in metas:
         folder= os.path.basename(os.path.dirname(x))
         end= data['end']
         start= data.get('start', end - 3*86400)
@@ -137,4 +133,4 @@ def list_logs(ctx):
             end=end,
         ))
 
-    return ret
+    return reversed(ret)
