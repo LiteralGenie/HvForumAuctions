@@ -211,6 +211,9 @@ warning_post: |-
 
   text= "\n".join(text)
   %> \
+  [color=orange][size=3]Proxy Bid Form:[/size][/color]
+  https://auction.e33.moe/proxy/form
+
   [color=orange][size=3]Bid Log:[/size][/color]
   https://auction.e33.moe/
 

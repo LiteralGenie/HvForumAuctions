@@ -8,7 +8,7 @@
             </td>
             <td>{{item_key}}</td>
             <td v-html="item_name"/>
-            <td><span v-html="winner"/></td>
+            <td><span v-html="winner" :class="{unbid: has_no_bids}"/></td>
         </tr>
 
         <!-- rows hidden until click -->
@@ -96,7 +96,7 @@
                     }
                 }
 
-                return "(none)"
+                return "-"
             },
 
             has_no_bids() {
@@ -175,5 +175,9 @@
     .winner {
         background-color: rgb(232, 255, 214);
         font-weight: bold;
+    }
+
+    .unbid {
+        
     }
 </style>
