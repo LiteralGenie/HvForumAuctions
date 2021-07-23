@@ -115,14 +115,16 @@ def list_logs(ctx):
         file= x + "/meta.yaml"
         if os.path.exists(file):
             meta_files.append(file)
+
     metas= [utils.load_yaml(x) for x in meta_files]
+    for i,data in enumerate(metas):
+        data['file']= meta_files[i]
     metas.sort(key=lambda x: -float(x['number']))
 
     ret= dict(info_link=ctx.CONFIG['info_link'])
-
     ret['logs']= []
-    for file,data in zip(meta_files,metas):
-        folder= os.path.basename(os.path.dirname(file))
+    for data in metas:
+        folder= os.path.basename(os.path.dirname(data['file']))
         end= data['end']
         start= data.get('start', end - 3*86400)
 
