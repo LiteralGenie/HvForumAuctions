@@ -116,7 +116,7 @@ def list_logs(ctx):
         if os.path.exists(file):
             metas.append(file)
     metas= [utils.load_yaml(x) for x in metas]
-    metas.sort(key=lambda x: float(x['number']))
+    metas.sort(key=lambda x: -float(x['number']))
 
     ret= dict(info_link=ctx.CONFIG['info_link'])
 
@@ -133,4 +133,4 @@ def list_logs(ctx):
             end=end,
         ))
 
-    return list(reversed(ret))
+    return ret
