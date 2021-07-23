@@ -1,7 +1,11 @@
 <template>
     <div>
         <!-- bid confirmed -->
-        <div id="confirmed">
+        <div id="links">
+            <a href="/">bid log</a> • 
+            <a :href="ctx.thread">auction thread</a>
+        </div>
+        <div id="confirmation">
             <div id="summary">
                 <div>username: <b>{{ctx.user}}</b></div>
                 <div>bid code: <b>{{ctx.code}}</b></div>
@@ -191,7 +195,12 @@
         margin-bottom: 10px;
     }
 
-    #confirmed {
+    #links {
+        text-align: left;
+        margin-bottom: 13px;
+    }
+
+    #confirmation {
         display: grid;
         text-align: left;
     }

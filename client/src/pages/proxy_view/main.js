@@ -7,11 +7,16 @@ import VueAxios from 'vue-axios'
 // fatch data
 async function load_data() {
     let params= new URLSearchParams(window.location.search)
+    
     let key= params.get('key')
     if(!key) throw TypeError('no key in url params')
 
     let target= process.env.VUE_APP_SERVER_URL + "/api/proxy/view" + `?key=${key}`
     let data= (await axios.get(target)).data
+
+    if(!params.get('code')) {
+        history.replaceState(null, null, `?code=${data.code}`)
+    }
     
     console.log(target, data)    
     return data
