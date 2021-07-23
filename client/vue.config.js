@@ -17,11 +17,18 @@ module.exports = {
             title: 'Your Proxy Bids'
         },
 
-        overview: {
-            entry: 'src/pages/overview/main.js',
+        logs: {
+            entry: 'src/pages/log/main.js',
             template: 'public/loading_index.html',
-            filename: 'overview.html',
+            filename: 'log.html',
             title: 'Overview'
+        },
+
+        log_list: {
+            entry: 'src/pages/log_list/main.js',
+            template: 'public/loading_index.html',
+            filename: 'log_list.html',
+            title: 'All Logs'
         }
 
         // test: {

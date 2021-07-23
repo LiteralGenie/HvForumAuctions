@@ -1,14 +1,14 @@
 <template>
-    <overview/>
+    <log/>
 </template>
 
 <script>
-import overview from "../../components/overview/_main.vue"
+import log from "../../components/log/main.vue"
 
 export default {
     name: 'App',
     components: {
-        overview
+        log
     },
 
     created() {

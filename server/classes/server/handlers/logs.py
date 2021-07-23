@@ -3,20 +3,31 @@ from classes import AuctionContext, EquipScraper
 from utils.auction_utils import get_equip_info
 import utils
 
+LOG_HISTORY= dict()
+async def load_ctx(folder, default_ctx):
+    try:
+        folder= str(folder)
+        if default_ctx.FOLDER == folder:
+            ctx= default_ctx
+        else:
+            ctx= LOG_HISTORY.get(folder, await AuctionContext.create(folder=folder, session=default_ctx.session))
 
-def get(ctx):
+        LOG_HISTORY[folder]= ctx
+        return ctx
+    except FileNotFoundError:
+        raise
+
+def api_get(current_ctx):
     # type: (AuctionContext) -> type
-    class OverviewGetHandler(CorsHandler):
-        def get(self):
-            return self.render(utils.PAGES_DIR + "overview.html")
-
-    return OverviewGetHandler
+    global LOG_HISTORY
 
 
-def api_get(ctx):
-    # type: (AuctionContext) -> type
     class ApiGetHandler(CorsHandler):
-        def get(self):
+        async def get(self):
+            folder= self.get_argument("id", str(current_ctx.FOLDER))
+            ctx= await load_ctx(folder, current_ctx)
+            is_current= (ctx is current_ctx)
+
             ret= dict()
             max_bids= ctx.get_max_bids()
 
@@ -25,6 +36,7 @@ def api_get(ctx):
             ret['start']= ctx.META.get('start', ctx.META['end'] - 3*86400)
             ret['end']= ctx.META['end']
             ret['last_update']= ctx.last_check
+            ret['is_current']= is_current
 
             ret['items']= []
             lst= [*ctx.META['equips'], ctx.META['materials']]
@@ -66,4 +78,19 @@ def api_get(ctx):
                     ret['items'].append(item_info)
 
             self.write(ret)
+
     return ApiGetHandler
+
+def get(current_ctx):
+    class LogHandler(CorsHandler):
+        async def get(self):
+            folder= self.get_argument("id", None)
+
+            if folder:
+                await load_ctx(folder, current_ctx)
+                return self.render(utils.PAGES_DIR + "log.html")
+            else:
+                return self.render(utils.PAGES_DIR + "log_list.html")
+
+
+    return LogHandler

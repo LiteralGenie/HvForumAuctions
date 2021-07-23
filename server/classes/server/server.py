@@ -1,5 +1,5 @@
-from tornado.web import Application, StaticFileHandler
-from .handlers import proxy_view, proxy_form, timer, update, overview
+from tornado.web import Application, StaticFileHandler, RedirectHandler
+from .handlers import proxy_view, proxy_form, timer, update, logs
 import utils
 
 
@@ -10,8 +10,9 @@ class Server(Application):
         self.ctx= ctx
 
         # routes
-        handlers.append(('/', overview.get(ctx)))
-        handlers.append(('/api/overview', overview.api_get(ctx)))
+        handlers.append(('/logs', logs.get(ctx)))
+        handlers.append(('/', RedirectHandler, {"url": f"/logs/{ctx.FOLDER}"}))
+        handlers.append(('/api/logs', logs.api_get(ctx)))
 
         handlers.append(('/update',           update.get_update(ctx)))
         handlers.append(('/api/update_check', update.get_check(ctx)))
@@ -24,7 +25,7 @@ class Server(Application):
 
         handlers.append(('/timer', timer.get(ctx)))
 
-        handlers.append(('/((?:img|js|css)/.*)', StaticFileHandler, dict(path=utils.PAGES_DIR)))
+        handlers.append(('/((?:img|js|css|gif)/.*)', StaticFileHandler, dict(path=utils.PAGES_DIR)))
 
         # start server
         super().__init__(handlers)

@@ -2,7 +2,7 @@ from utils.scraper_utils import get_session, do_hv_login, do_forum_login
 from utils.config_utils import load_config
 from utils.auction_utils import get_new_posts, parse_proxy_code, parse_forum_bid, update_bid_cache, rand_string, rand_phrase
 from utils.template_utils import render
-import utils, time, re, json, copy
+import utils, time, re, json, copy, os
 
 # @todo: redo context -- more aggregated instead of separate META / EQUIP_DATA, etc -- its awk to repeatedly extract key to access eq data
 
@@ -10,10 +10,14 @@ import utils, time, re, json, copy
 # use with async
 class AuctionContext:
     @classmethod
-    async def create(cls):
-        ctx= cls()
-        await ctx.do_hv_login()
-        await ctx.do_forum_login()
+    async def create(cls, folder=None, session=None):
+        ctx= cls(folder=folder)
+
+        if not session:
+            ctx.session= await ctx.do_hv_login()
+            ctx.session= await ctx.do_forum_login()
+        else:
+            ctx.session= session
 
         ctx.EQUIPS= await ctx.get_eq_cache(ctx.session)
         return ctx
@@ -27,6 +31,9 @@ class AuctionContext:
 
         self.BID_FILE= self.CACHE_DIR + "bids.json"
         self.SEEN_FILE= self.CACHE_DIR + "seen_posts.json"
+
+        if any(not os.path.exists(x) for x in [self.META_FILE]):
+            raise FileNotFoundError
 
     # ensure string keys
     def load_META(self):
@@ -42,10 +49,10 @@ class AuctionContext:
         return meta
 
 
-    def __init__(self):
+    def __init__(self, folder=None):
         # paths
         self.CONFIG= load_config()
-        self.FOLDER= str(self.CONFIG['current_auction'])
+        self.FOLDER= str(folder or self.CONFIG['current_auction'])
         self.load_paths()
 
         # files
@@ -121,9 +128,9 @@ class AuctionContext:
         return ret
 
     async def do_hv_login(self):
-        self.session= await do_hv_login(self.session)
+        return await do_hv_login(self.session)
     async def do_forum_login(self):
-        self.session= await do_forum_login(self.session)
+        return await do_forum_login(self.session)
 
     async def get_eq_cache(self, session):
         from .equip_parser import EquipParser

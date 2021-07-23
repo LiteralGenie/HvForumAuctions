@@ -4,9 +4,14 @@ import axios from 'axios'
 import VueAxios from 'vue-axios'
 
 
-// fatch data
+// fetch data
 async function load_data() {
-    let target= process.env.VUE_APP_SERVER_URL + "/api/overview"
+    let params= new URLSearchParams(window.location.search)
+    
+    let id= params.get('id')
+    if(!id) throw TypeError('no id in url params')
+
+    let target= process.env.VUE_APP_SERVER_URL + "/api/logs" + `?id=${id}`
     let data= (await axios.get(target)).data
     
     console.log(target, data)    

@@ -101,10 +101,10 @@
     },
 
     "update_check": {
-        "cooldown": 3.5
+        "cooldown": 15
     },
 
-    "update_request": {},
+    "update_request": {"a": 1},
 
     "overview": {
         "auction_name": "Genie's Bottle #4",
@@ -190,6 +190,15 @@
                 "name":"Legendary Reinforced Leather Gauntlets of the Shadowdancer",
                 "bids": []
             }   
+        ]
+    },
+
+    "log_list": {
+        "info_link": "https://google.com",
+        "logs": [
+            { "name": "blah1", "link": "https://google.com", "start": 1111, "end": 2222 },
+            { "name": "blah2", "link": "https://google.com", "start": 1111, "end": 2222 },
+            { "name": "blah3", "link": "https://google.com", "start": 1111, "end": 2222 }
         ]
     }
 }

@@ -1,10 +1,15 @@
 <template>
-    <div id="root">
-        <div id="summary">
+    <div class="root">
+        <!-- bid confirmed -->
+        <nav_links :links="links" class="nav_bar"/>
+
+        <div class="summary">
             <div id="title"><a :href="ctx.auction_link">Genie's Bottle #4</a></div>
-            <span><b>Last Update:</b> {{last_update}}</span>
-            <br/><span><b>Auction Start:</b> {{fmt_time(ctx.start)}}</span>
-            <br/><span><b>Auction End:</b> {{fmt_time(ctx.end)}}</span>
+            <span v-if="ctx.is_current">
+                <b>Last Update:</b> {{last_update}}<br/>
+            </span>
+            <span><b>Auction Start:</b> {{fmt_time(ctx.start)}}</span><br/>
+            <span><b>Auction End:</b> {{fmt_time(ctx.end)}}</span>
         </div>
         <table>
             <thead>
@@ -21,22 +26,31 @@
                 :item="ctx.items[i]"/>
             </tbody>
         </table>
-        <img :src="timer_url">
+        <img v-if="ctx.is_current"
+        :src="timer_url">
     </div>
 </template>
 
 <script>
     import item_row from "./item_row.vue"
+    import nav_links from "../navigation.vue"
 
     export default {
         data() { return {
             ctx: null,
 
-            last_update: 0
+            last_update: 0,
+            links: []
         }},
 
         created() {
             this.ctx= this.init_ctx()
+            
+            this.links= [
+                {text: "all logs", href: "/logs"},
+                {text: "auction link", href: this.ctx.auction_link},
+            ]
+            console.log(this.links)
 
             setInterval(() => {
                 this.refresh_last_update()
@@ -97,17 +111,18 @@
 
         components: {
             item_row,
+            nav_links,
         }
     }
 </script>
 
 
 <style scoped>
-    #root {
+    .root {
         display: grid;
     }
 
-    #summary {
+    .summary {
         text-align: left;
         line-height: 20px;
         margin-bottom: 20px;
@@ -138,5 +153,9 @@
         padding: 10px;
         border-bottom: 1px solid #000;
         background-color: rgb(220,220,220)
+    }
+
+    .nav_bar {
+        margin-bottom: 10px;
     }
 </style>

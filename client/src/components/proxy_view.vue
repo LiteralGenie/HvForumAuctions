@@ -1,10 +1,8 @@
 <template>
     <div>
+        <nav_links :links="links" class="nav_bar"/>
+
         <!-- bid confirmed -->
-        <div id="links">
-            <a href="/">bid log</a> • 
-            <a :href="ctx.thread">auction thread</a>
-        </div>
         <div id="confirmation">
             <div id="summary">
                 <div>username: <b>{{ctx.user}}</b></div>
@@ -26,11 +24,18 @@
                     with your bid code (<b>{{ctx.code}}</b>).
                     <br>
                 </div>
-                <button
-                :disabled="disabled"
-                @click="do_check">
-                    {{button_text}}
-                </button>
+
+                <div id="button_div">
+                    <button
+                    :disabled="disabled"
+                    @click="do_check">
+                        {{button_text}}
+                    </button>
+                    <br>
+                    <img 
+                    v-if="disabled"
+                    :src="load_image" width="150"/>
+                </div>
             </div>
         </div>
 
@@ -72,6 +77,7 @@
 
 <script>
     import { int_to_price } from "../utils/misc_utils.js"
+    import nav_links from "./navigation.vue"
 
     export default {
         data() { return {
@@ -80,11 +86,21 @@
             lock_time: 0,
             cooldown: 0,
             disabled: false,
+            load_image: this.get_load_image(),
+
+            links: [{text: "bid log", href: "/"}],
         }},
 
         created() {
             // load pre-fetched api response
             this.ctx= JSON.parse(JSON.stringify(this.RESP_DATA))
+
+            console.log(this.links, 'wtf')
+            this.links= [
+                {text: "bid log", href: "/"},
+                {text: "auction thread", href: this.ctx.thread},
+            ]
+            console.log(this.links, 'wtf')
         },
 
         methods: {
@@ -112,6 +128,7 @@
                 
                 // all outcomes will reload the page, so disable button until then
                 this.disabled= true
+                this.load_image= this.get_load_image()
 
                 // get cooldown
                 let cd= (await this.$http.get(check_url)).data.cooldown
@@ -157,6 +174,20 @@
                 let diff= this.lock_time - Date.now()/1000
                 return Math.max(diff, 0)
             },
+
+            get_load_image() {
+                function choose(array) {
+                    return array[Math.floor(Math.random() * array.length)];
+                }
+                let choices = [
+                    // 앤
+                    "https://cdn.discordapp.com/attachments/598883191541071882/677766758454525973/-_-_-2_.gif",
+                    // 프레이
+                    "https://cdn.discordapp.com/attachments/598883191541071882/677766782173446154/-_-_-2_.gif",
+                ]
+
+                return choose(choices)
+            }
         },
 
         computed: {
@@ -186,6 +217,10 @@
                     return 'Check thread'
                 }
             }
+        },
+
+        components: {
+            nav_links
         },
     }
 </script>
@@ -228,9 +263,10 @@
         margin: 10px 0 15px 0;
     }
 
-    div.unconfirmed > button {
+    #button_div > button {
         font-size: 15px;
         padding: 3px 5px 3px 5px;
+        margin: 0px 0px 8px 0px;
     }
 
     td:nth-child(4) > div {
@@ -243,5 +279,9 @@
 
     table.unconfirmed > tbody > tr > td:nth-child(3) {
         color: rgba(0,0,0, 0.35);
+    }
+
+    .nav_bar {
+        margin-bottom: 21px;
     }
 </style>
