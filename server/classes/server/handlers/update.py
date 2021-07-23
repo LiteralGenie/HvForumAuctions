@@ -15,6 +15,7 @@ def get_update(ctx):
     class UpdateHandler(CorsHandler):
         async def get(self):
             await ctx.do_thread_update()
-            self.redirect(ctx.thread_link)
+            if not int(self.get_argument('no_redirect', "0")):
+                self.redirect(ctx.thread_link)
 
     return UpdateHandler

@@ -129,7 +129,7 @@
 
             async do_update() {
                 console.log('requesting update')
-                let update_url= process.env.VUE_APP_SERVER_URL + "/update"
+                let update_url= process.env.VUE_APP_SERVER_URL + "/update?no_redirect=1"
                 await this.$http.get(update_url)
                 location.reload()
             },

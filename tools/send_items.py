@@ -171,12 +171,11 @@ def get_tab(chrome):
 
     return tabs[ind]
 
-def do_isekai(item, chrome, ctx):
-    # type: (dict, Chromote, AuctionContext) -> None
+def do_isekai(item, tab, ctx):
+    # type: (dict, Tab, AuctionContext) -> None
 
     # inits
     info= get_info(item, ctx)
-    tab= Tab(chrome.add_tab())
     tab.to_isk()
 
     # set user / subject / body
@@ -212,10 +211,9 @@ def do_isekai(item, chrome, ctx):
     tab.execute(cmds)
     return
 
-def do_persistent(item, chrome, ctx):
+def do_persistent(item, tab, ctx):
     # inits
     info= get_info(item, ctx)
-    tab= Tab(chrome.add_tab())
     tab.to_pers()
 
     # set body
@@ -243,15 +241,14 @@ def do_persistent(item, chrome, ctx):
     tab.execute(cmds)
     return
 
-def do_seller(item, chrome, ctx):
-    # type: (dict, Chromote, AuctionContext) -> None
+def do_seller(item, tab, ctx):
+    # type: (dict, Tab, AuctionContext) -> None
 
     # inits
     info= get_info(item, ctx)
     if info['seller'] is None:
         return
 
-    tab= Tab(chrome.add_tab())
     tab.to_pers()
 
     # message
@@ -286,17 +283,19 @@ async def main():
 
     max_bids= ctx.get_max_bids()
     for cat in max_bids.values():
-        for item in cat.values():
+        lst= sorted(list(cat.values()), key=lambda item: int(item['item_code']))
+        for item in lst:
             print("\n" + str(item))
 
-            inp= input("Skip? ")
-            # inp= "0"
+            # inp= input("Skip? ")
+            inp= "0"
             if inp.lower() in "1 y".split():
                 continue
 
-            do_isekai(item, chrome, ctx)
-            do_persistent(item, chrome, ctx)
-            do_seller(item, chrome, ctx)
+            tabs= [Tab(chrome.add_tab()) for i in range(3)]
+            do_isekai(item, tabs[0], ctx)
+            do_persistent(item, tabs[1], ctx)
+            do_seller(item, tabs[2], ctx)
 
     await ctx.close()
 
