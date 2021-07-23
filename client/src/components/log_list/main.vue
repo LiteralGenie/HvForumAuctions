@@ -4,7 +4,7 @@
     <table>
         <thead>
             <tr>
-                <th>Title</th>
+                <th>Auction</th>
                 <th>Start Date</th>
             </tr>
         </thead>
@@ -43,4 +43,27 @@
 </script>
 
 <style scoped>
+    .nav_bar {
+        margin-bottom: 15px;
+    }
+
+    table {
+        border-collapse: collapse;
+        border: 1px solid #000;
+
+        table-layout: fixed;
+        width: 300px;
+    }
+
+    tbody > :deep(tr) {
+        line-height: 28px;
+        border: 1px solid #000;
+    }
+
+    th {
+        padding: 10px;
+        border-bottom: 1px solid #000;
+        background-color: rgb(220,220,220)
+    }
+    th:nth-child(1) { width: 50%; }
 </style>

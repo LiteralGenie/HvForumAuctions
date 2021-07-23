@@ -196,9 +196,9 @@
     "log_list": {
         "info_link": "https://google.com",
         "logs": [
-            { "name": "blah1", "link": "https://google.com", "start": 1111, "end": 2222 },
-            { "name": "blah2", "link": "https://google.com", "start": 1111, "end": 2222 },
-            { "name": "blah3", "link": "https://google.com", "start": 1111, "end": 2222 }
+            { "name": "Genie's Bottle #1", "link": "https://google.com", "start": 1111, "end": 2222 },
+            { "name": "Genie's Bottle #2", "link": "https://google.com", "start": 1111, "end": 2222 },
+            { "name": "Genie's Bottle #3", "link": "https://google.com", "start": 1111, "end": 2222 }
         ]
     }
 }

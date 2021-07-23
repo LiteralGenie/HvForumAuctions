@@ -17,17 +17,17 @@
 
                 let d= new Date(this.log.start)
 
+                let year=  pad(d.getFullYear())
                 let month= pad(months[d.getMonth()])
                 let day=   pad(d.getDay())
                 let hour=  pad(d.getHours())
                 let min=   pad(d.getMinutes())
 
-                return `${month}-${day}, ${hour}:${min}`
+                return `${month}-${day}, ${year}`
             },
         },
     }
 </script>
 
 <style scoped>
-
 </style>

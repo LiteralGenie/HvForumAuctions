@@ -1,7 +1,10 @@
+import os.path
+
 from .cors_handler import CorsHandler
 from classes import AuctionContext, EquipScraper
 from utils.auction_utils import get_equip_info
-import utils
+import utils, glob
+
 
 LOG_HISTORY= dict()
 async def load_ctx(folder, default_ctx):
@@ -24,8 +27,17 @@ def api_get(current_ctx):
 
     class ApiGetHandler(CorsHandler):
         async def get(self):
-            folder= self.get_argument("id", str(current_ctx.FOLDER))
-            ctx= await load_ctx(folder, current_ctx)
+            folder= self.get_argument("id", None)
+            if folder:
+                try:
+                    ctx= await load_ctx(folder, current_ctx)
+                    return await self._get(ctx)
+                except FileNotFoundError:
+                    print(f"WARNING: invalid id for api/logs: {folder}")
+
+            self.write(list_logs(current_ctx))
+
+        async def _get(self, ctx):
             is_current= (ctx is current_ctx)
 
             ret= dict()
@@ -94,3 +106,35 @@ def get(current_ctx):
 
 
     return LogHandler
+
+def list_logs(ctx):
+    def folder_val(name):
+        root= os.path.basename(name)
+        return (-len(root), root)
+
+    folders= glob.glob(utils.AUCTION_DIR + "*")
+    folders.sort(key=folder_val)
+
+    metas= []
+    for x in folders:
+        file= x + "/meta.yaml"
+        if os.path.exists(file):
+            metas.append(file)
+
+    ret= dict(info_link=ctx.CONFIG['info_link'])
+
+    ret['logs']= []
+    for x in metas:
+        data= utils.load_yaml(x)
+        folder= os.path.basename(os.path.dirname(x))
+        end= data['end']
+        start= data.get('start', end - 3*86400)
+
+        ret['logs'].append(dict(
+            name=ctx.META.get('name', "Genie's Bottle"),
+            link=f"/logs?id={folder}",
+            start=start,
+            end=end,
+        ))
+
+    return ret
