@@ -19,7 +19,7 @@
 
                 let year=  pad(d.getFullYear())
                 let month= pad(months[d.getMonth()])
-                let day=   pad(d.getDay())
+                let day=   pad(d.getDate())
                 let hour=  pad(d.getHours())
                 let min=   pad(d.getMinutes())
 

@@ -110,19 +110,19 @@ def get(current_ctx):
 def list_logs(ctx):
     folders= glob.glob(utils.AUCTION_DIR + "*")
 
-    metas= []
+    meta_files= []
     for x in folders:
         file= x + "/meta.yaml"
         if os.path.exists(file):
-            metas.append(file)
-    metas= [utils.load_yaml(x) for x in metas]
+            meta_files.append(file)
+    metas= [utils.load_yaml(x) for x in meta_files]
     metas.sort(key=lambda x: -float(x['number']))
 
     ret= dict(info_link=ctx.CONFIG['info_link'])
 
     ret['logs']= []
-    for data in metas:
-        folder= os.path.basename(os.path.dirname(x))
+    for file,data in zip(meta_files,metas):
+        folder= os.path.basename(os.path.dirname(file))
         end= data['end']
         start= data.get('start', end - 3*86400)
 
