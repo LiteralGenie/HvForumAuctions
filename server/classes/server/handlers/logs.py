@@ -133,4 +133,4 @@ def list_logs(ctx):
             end=end,
         ))
 
-    return reversed(ret)
+    return list(reversed(ret))
