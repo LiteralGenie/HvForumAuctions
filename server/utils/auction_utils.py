@@ -261,6 +261,6 @@ def get_equip_info(cat, code, meta, equips):
             link= dct['items'][code]
             eid= EquipScraper.extract_id_key(link)[0]
             name= equips[eid]['name']
-            seller= dct.get('sellers', {}).get(int(code))
+            seller= dct.get('sellers', {}).get(str(code), '프레이')
 
             return dict(name=name, link=link, eid=eid, seller=seller)

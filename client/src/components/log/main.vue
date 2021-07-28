@@ -4,7 +4,7 @@
         <nav_links :links="links" class="nav_bar"/>
 
         <div class="summary">
-            <div id="title"><a :href="ctx.auction_link">Genie's Bottle #4</a></div>
+            <div id="title"><a :href="ctx.auction_link">{{ctx.auction_name}}</a></div>
             <span v-if="ctx.is_current">
                 <b>Last Update:</b> {{last_update}}<br/>
             </span>
@@ -73,7 +73,9 @@
                 let pad= (x => String(x).padStart(2,0))
                 let month_list= ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
                 
-                let d= new Date(t*1000)
+                let offset= 60*1000*new Date().getTimezoneOffset()
+                let d= new Date(t*1000 + offset)
+
                 let day= d.getDate()
                 let month= month_list[d.getMonth()]
                 let hour= d.getHours()

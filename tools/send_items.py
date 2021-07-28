@@ -111,7 +111,7 @@ class Tab:
             if not lst: return
             tmp= ';\n'.join(lst)
 
-            print(f'executing\n...\n{tmp}\n...')
+            # print(f'executing\n...\n{tmp}\n...')
             self.tab.evaluate(tmp)
 
         lst= []
@@ -151,7 +151,7 @@ def get_info(item, ctx):
         ret['is_mat']= True
         ret['quant']= quant
         ret['name']= name
-        ret['seller']= ctx.META['materials'].get('sellers', {}).get(item['item_code'])
+        ret['seller']= ctx.META['materials'].get('sellers', {}).get(item['item_code'], '프레이')
     else:
         info= get_equip_info(item['item_type'], item['item_code'], ctx.META, ctx.EQUIPS)
         ret['text']= f"{abbrv} {info['name']}"
@@ -181,16 +181,13 @@ def do_isekai(item, tab, ctx):
     # set user / subject / body
     msg= strip_para(f"""
     Hello, you've purchased the following item from {ctx.META['name']}:
-    
     ........................
-    
-    {int_to_price(item['visible_bid'])} -- {info['text']}
-    
+    item: {info['text']}
+    price: {int_to_price(item['visible_bid'])}
+    seller: {info['seller']}
     ........................
-    
-    {ctx.thread_link}
-    
     Thanks for choosing my auction and please check your mailbox in persistent HV~
+    {ctx.thread_link}
     """).replace("'", "\\'")
 
     # message
@@ -219,10 +216,12 @@ def do_persistent(item, tab, ctx):
     # set body
     msg= strip_para(f"""
     Hello, you've purchased the following item from {ctx.META['name']}:
-
     ........................
-    
-    {int_to_price(item['visible_bid'])} -- {info['text']}
+    item: {info['text']}
+    price: {int_to_price(item['visible_bid'])}
+    seller: {info['seller']}
+    ........................
+    {ctx.thread_link}
     """).replace("'", "\\'")
 
     # message
@@ -255,7 +254,7 @@ def do_seller(item, tab, ctx):
     msg= strip_para(f"""
     Your auction item has been sold!
     ........................
-    item: {info['name']}
+    item: {info['text']}
     price: {int_to_price(item['visible_bid'])}
     buyer: {item['user']}
     ........................
@@ -280,11 +279,19 @@ def do_seller(item, tab, ctx):
 async def main():
     chrome= Chromote()
     ctx= await AuctionContext.create()
+    tab_gen= TabGenerator(chrome, n=9)
 
     max_bids= ctx.get_max_bids()
     for cat in max_bids.values():
         lst= sorted(list(cat.values()), key=lambda item: int(item['item_code']))
         for item in lst:
+            if item['item_type'] in ['Arm'] and int(item['item_code']) not in [137, 139]:
+                continue
+            if item['item_type'] in ['Wep'] and int(item['item_code']) < 999:
+                continue
+            if item['item_type'] in ['Mat'] and int(item['item_code']) < 99:
+                continue
+
             print("\n" + str(item))
 
             # inp= input("Skip? ")
@@ -292,11 +299,31 @@ async def main():
             if inp.lower() in "1 y".split():
                 continue
 
-            tabs= [Tab(chrome.add_tab()) for i in range(3)]
-            do_isekai(item, tabs[0], ctx)
-            do_persistent(item, tabs[1], ctx)
-            do_seller(item, tabs[2], ctx)
+            do_persistent(item, tab_gen.get_tab(), ctx)
+            do_isekai(item, tab_gen.get_tab(), ctx)
+            do_seller(item, tab_gen.get_tab(), ctx)
 
     await ctx.close()
+
+class TabGenerator:
+    def __init__(self, chrome, n=9):
+        self.n= n
+        self.ind= 0
+        self.chrome= chrome
+
+        self.tabs= [Tab(x) for x in reversed(chrome.tabs) if x.title == "about:blank"]
+        if not self.tabs:
+            self.tabs+= self.create_tabs()
+
+    def create_tabs(self):
+        return [Tab(self.chrome.add_tab()) for i in range(self.n)]
+
+    def get_tab(self):
+        if self.ind >= len(self.tabs):
+            self.tabs+= self.create_tabs()
+
+        self.ind+= 1
+        return self.tabs[self.ind-1]
+
 
 asyncio.run(main())

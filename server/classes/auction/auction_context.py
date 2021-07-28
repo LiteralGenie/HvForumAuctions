@@ -44,6 +44,7 @@ class AuctionContext:
             if d == {}:
                 return
             d['items']= { str(x):y for x,y in d['items'].items() }
+            d['sellers']= { str(x):y for x,y in d.get('sellers', {}).items() }
 
         self.META= meta
         return meta
