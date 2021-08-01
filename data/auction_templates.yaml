@@ -44,7 +44,7 @@ equip_section: |-
       visible_stats= ", ".join(tmp)
 
       comment= CATEGORY.get('comments',{}).get(int(num), "")
-      seller= CATEGORY.get('sellers', {}).get(int(num))
+      seller= CATEGORY.get('sellers', {}).get(num)
 
 
       # bids
