@@ -101,7 +101,7 @@ material_section: |-
       code= f"[{abbrv}_{num}]"
 
       comment= CATEGORY.get('comments',{}).get(int(num), "")
-      seller= CATEGORY.get('sellers', {}).get(int(num))
+      seller= CATEGORY.get('sellers', {}).get(num)
 
 
       # gets bids
