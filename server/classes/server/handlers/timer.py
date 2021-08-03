@@ -47,6 +47,11 @@ def get(ctx):
             bg_img= roll_bg()
 
             # svg
+            is_end= time.time() >= ctx.META['end']
+            content= f"""<span class="hours"></span>h
+                        <span class="minutes"></span>m
+                        <span class="seconds"></span>s""" if is_end else "END"
+
             resp= f"""
             <svg id="svg_main" fill="none" viewBox="0 0 399 168" xmlns="http://www.w3.org/2000/svg"
             width="399px" height="168px"
@@ -59,9 +64,7 @@ def get(ctx):
                       <div class="title">Auction End:</div>
                       <br></br>
                       <div class="timer">
-                        <span class="hours"></span>h
-                        <span class="minutes"></span>m
-                        <span class="seconds"></span>s
+                        {content}
                       </div>
                     </div>
                   </div>

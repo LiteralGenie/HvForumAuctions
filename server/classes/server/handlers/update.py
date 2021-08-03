@@ -1,5 +1,6 @@
 from .cors_handler import CorsHandler
 from classes.auction import AuctionContext
+import time
 
 
 def get_check(ctx):
@@ -14,7 +15,8 @@ def get_update(ctx):
     # type: (AuctionContext) -> type
     class UpdateHandler(CorsHandler):
         async def get(self):
-            await ctx.do_thread_update()
+            if time.time() < ctx.META['end']:
+                await ctx.do_thread_update()
             if not int(self.get_argument('no_redirect', "0")):
                 self.redirect(ctx.thread_link)
 
