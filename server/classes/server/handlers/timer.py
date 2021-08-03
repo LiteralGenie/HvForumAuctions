@@ -50,7 +50,7 @@ def get(ctx):
             is_end= time.time() >= ctx.META['end']
             content= f"""<span class="hours"></span>h
                         <span class="minutes"></span>m
-                        <span class="seconds"></span>s""" if is_end else "END"
+                        <span class="seconds"></span>s""" if not is_end else "END"
 
             resp= f"""
             <svg id="svg_main" fill="none" viewBox="0 0 399 168" xmlns="http://www.w3.org/2000/svg"
