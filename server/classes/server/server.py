@@ -26,6 +26,7 @@ class Server(Application):
         handlers.append(('/timer', timer.get(ctx)))
 
         handlers.append(('/((?:img|js|css|gif)/.*)', StaticFileHandler, dict(path=utils.PAGES_DIR)))
+        handlers.append(('/(.*(?:ico|png))', StaticFileHandler, dict(path=utils.PAGES_DIR)))
 
         # start server
         super().__init__(handlers)
