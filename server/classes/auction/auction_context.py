@@ -77,6 +77,7 @@ class AuctionContext:
         self.session= get_session()
         self.thread_id= self.META['thread_id']
         self.thread_link= f"https://forums.e-hentai.org/index.php?showtopic={self.thread_id}"
+        self.log_link= f"https://auction.e33.moe/logs?id={self.CONFIG['current_auction']}"
 
     async def close(self):
         await self.session.close()

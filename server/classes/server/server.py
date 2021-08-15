@@ -1,10 +1,11 @@
 from tornado.web import Application, StaticFileHandler, RedirectHandler
 from .handlers import proxy_view, proxy_form, timer, update, logs
 import utils
+from .. import AuctionContext
 
 
 class Server(Application):
-    def __init__(self, ctx):
+    def __init__(self, ctx: AuctionContext):
         # inits
         handlers= []
         self.ctx= ctx
@@ -15,6 +16,7 @@ class Server(Application):
         handlers.append(('/api/logs', logs.api_get(ctx)))
 
         handlers.append(('/update',           update.get_update(ctx)))
+        handlers.append((f'/{ctx.CONFIG["force_key"]}',     update.get_update(ctx, force=True)))
         handlers.append(('/api/update_check', update.get_check(ctx)))
 
         handlers.append(('/proxy/form',     proxy_form.get(ctx)))

@@ -126,6 +126,37 @@ class Tab:
 
         assert lst == [], str(lst)
 
+    # def execute(self, cmds):
+    #     # await new Promise(r => setTimeout(r, 2000));
+    #     def exec(lst):
+    #         if not lst: return ""
+    #         tmp= ';\n'.join(lst)
+    #
+    #         # print(f'executing\n...\n{tmp}\n...')
+    #         return tmp
+    #
+    #     slp= "\n; await new Promise(r => setTimeout(r, 500));\n"
+    #     cmd= []
+    #     lst= []
+    #     for x in cmds:
+    #         if isinstance(x, list):
+    #             cmd.append(exec(lst))
+    #             lst= []
+    #
+    #             cmd.append(exec(x))
+    #             continue
+    #         else:
+    #             lst.append(x)
+    #             if x is cmds[-1]:
+    #                 cmd.append(exec(lst))
+    #                 lst= []
+    #                 continue
+    #
+    #     cmd= slp + slp.join(cmd)
+    #     self.tab.evaluate(cmd)
+    #     print(f".....\n{cmd}\n.....")
+    #     assert lst == [], str(lst)
+
 
 class TabGenerator:
     def __init__(self, chrome, n=9):
@@ -146,15 +177,3 @@ class TabGenerator:
 
         self.ind+= 1
         return self.tabs[self.ind-1]
-
-def strip_para(text, appos=True):
-    split= text.split("\n")
-    split= [x.strip() for x in split]
-
-    ret= "\n".join(split)
-    ret= ret.strip().replace("\n", "\\n")
-
-    if not appos:
-        ret= ret.replace("'", "\\'")
-
-    return ret

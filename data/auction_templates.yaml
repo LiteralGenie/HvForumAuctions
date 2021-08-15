@@ -10,7 +10,7 @@ header: |-
 
   [size=3][u]Rules[/u][/size]:[list]
   [*] Minimum bid increment is ${red('25k (real credits, not ISK)')}.
-  [*] To place a bid, write the item code + price. For example, ${green('[Shld5] 5k')} or ${green('Shld_5 3.2m')}.
+  [*] To place a bid, write the item code + price. For example, ${green('Shld5 5k')} or ${green('Shld_5 3.2m')}.
   [*] [color=#ffa500]To place a proxy bid, please visit this link: [url=https://auction.e33.moe/proxy/form]https://auction.e33.moe/proxy/form[/url]. For further guidance, read [url=https://forums.e-hentai.org/index.php?s=&showtopic=246160&view=findpost&p=5881306]this post[/url].[/color]
   [*] After placing a bid / proxy bid, you can click the timer image above to update this thread.
   [*] [b]Bids can not be cancelled![/b] If the thread has not been updated, you can still edit your post, but otherwise, please send me a [b]forum PM[/b] to edit your bid.

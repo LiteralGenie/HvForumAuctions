@@ -11,11 +11,11 @@ def get_check(ctx):
 
     return CheckHandler
 
-def get_update(ctx):
-    # type: (AuctionContext) -> type
+def get_update(ctx, force=False):
+    # type: (AuctionContext, bool) -> type
     class UpdateHandler(CorsHandler):
         async def get(self):
-            if time.time() < ctx.META['end']:
+            if time.time() < ctx.META['end'] or force:
                 await ctx.do_thread_update()
             if not int(self.get_argument('no_redirect', "0")):
                 self.redirect(ctx.thread_link)

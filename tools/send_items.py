@@ -56,6 +56,7 @@ def do_isekai(item, tab, ctx):
     ........................
     Thanks for choosing my auction and please check your mailbox in persistent HV~
     {ctx.thread_link}
+    {ctx.log_link}
     """).replace("'", "\\'")
 
     # message
@@ -90,6 +91,7 @@ def do_persistent(item, tab, ctx):
     seller: {info['seller']}
     ........................
     {ctx.thread_link}
+    {ctx.log_link}
     """, appos=False)
 
     # message
@@ -127,6 +129,7 @@ def do_seller(item, tab, ctx):
     buyer: {item['user']}
     ........................
     {ctx.thread_link}
+    {ctx.log_link}
     """)
 
     cmds= tab.set_main(
@@ -153,12 +156,12 @@ async def main():
     for cat in max_bids.values():
         lst= sorted(list(cat.values()), key=lambda item: int(item['item_code']))
         for item in lst:
-            if item['item_type'] in ['Arm'] and int(item['item_code']) < 0:
-                continue
-            if item['item_type'] in ['Wep'] and int(item['item_code']) < 0:
-                continue
-            if item['item_type'] in ['Mat'] and int(item['item_code']) < 0:
-                continue
+            if item['item_type'] in ['Arm'] and int(item['item_code']) < 999: continue
+            if item['item_type'] in ['Wep'] and int(item['item_code']) < 999: continue
+            if item['item_type'] in ['Mat'] and int(item['item_code']) < 101: continue
+            # if item['item_type'] in ['Arm'] and int(item['item_code']) not in []: continue
+            # if item['item_type'] in ['Wep'] and int(item['item_code']) not in []: continue
+            # if item['item_type'] in ['Mat'] and int(item['item_code']) not in []: continue
 
             print("\n" + str(item))
 
